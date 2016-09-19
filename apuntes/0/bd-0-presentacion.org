@@ -171,5 +171,94 @@ La mayor de:
 - Operaciones DML
 - Las referencias
 
+* Contenidos
+** Almacenamiento de la información:
+- Ficheros (planos, indexados y acceso directo, de marcas, entre otros).
+- Bases de Datos (BD). Conceptos, usos y tipos según el modelo de datos, la ubicación de la información.
+- Sistemas gestores de bases de datos (SGBD): funciones, componentes y tipos.
+- SGBD comerciales vs. SGBD libres.
+- Bases de datos centralizadas y bases de datos distribuidas.
+ 
+** Bases de datos relacionales:
+- Modelo de datos.
+- Terminología del modelo relacional. Relaciones, atributos, tuplas.
+- Tipos de datos.
+- Claves primarias.
+- Índices. Características. Tipos.
+- El valor NULL.
+- Claves ajenas.
+- Vistas.
+#+REVEAL: split
+- Gestión de seguridad:
+   - Usuarios.
+   - Roles.
+   - Privilegios.
+   - Límites en el uso del SGBD (Perfiles).
+- Lenguaje de definición de datos (DDL, Data Definition Language).
+- Lenguaje de manipulación de datos (DML, Data Manipulation Language).
+- Lenguaje de control de datos (DCL, Data Control Language).
+ 
+** Realización de consultas:
+- Consultas para extraer información: la sentencia SELECT.
+- Selección, filtrado y ordenación de registros.
+- Operadores (combinación, precedencia):
+   - De comparación.
+   - Lógicos.
+   - Aritméticos.
+- Consultas de resumen. Funciones de agregado.
+- Agrupaciones de registros. Filtrado de las agrupaciones.
+- Composiciones internas.
+- Composiciones externas.
+#+REVEAL: split
+- Subconsultas:
+   - Devolución de valores individuales.
+   - Devolución de listas de valores.
+   - Devolución de tuplas de valores.
+   - Correlacionadas.
+- Consultas jerárquicas.
+- Consultas de operaciones de conjuntos: unión, intersección, diferencia.
+ 
+** Programación de bases de datos:
+- Introducción. Lenguaje de programación.
+- Sintaxis. Palabras reservadas. Comentarios.
+- Variables del sistema y variables de usuario.
+- Tipos de datos compuestos: registros, listas.
+- Funciones.
+#+REVEAL: split
+- Estructuras de control de flujo (disyunción, iteración).
+- Procedimientos almacenados. Funciones de usuario.
+- Subrutinas. Ámbito de variables.
+- Eventos y disparadores.
+- Excepciones: Tipos y tratamiento.
+- Cursores.
+
+** Tratamiento de datos:
+- Inserción, borrado y modificación de registros:
+   - A partir de datos proporcionados por el usuario.
+   - A partir de datos recuperados mediante subconsultas.
+- Borrados y modificaciones e integridad referencial.
+- Subconsultas y composiciones en órdenes de edición.
+- Transacciones. Sentencias de confirmación y deshacer.
+- Políticas de bloqueo: a nivel de registro, a nivel de tabla.
+ 
+** Interpretación de diagramas entidad/relación:
+- Entidades y relaciones. Atributos. Cardinalidad.
+- Entidades fuertes vs. entidades débiles. Relaciones de dependencia en existencia y en identificación.
+- El modelo E/R ampliado. Generalizaciones.
+- Paso del modelo E/R al modelo relacional.
+- Normalización de modelos relacionales. Formas normales. Desnormalización.
+ 
+** Uso de bases de datos objeto-relacionales:
+- Características de las bases de datos objeto-relacionales.
+- Tipos de datos objeto.
+- Definición de tipos de objeto.
+- Herencia.
+- Identificadores; referencias. Navegabilidad.
+- Tipos de datos colección.
+- Declaración e inicialización de objetos.
+- Uso de la sentencia SELECT.
+- Inserción de objetos.
+- Modificación y borrado de objetos.
+
 
 
