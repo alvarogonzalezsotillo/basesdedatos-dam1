@@ -172,6 +172,15 @@ La mayor de:
 - Las referencias
 
 * Contenidos
+
+/DECRETO 3/2011, de 13 de enero, del Consejo de Gobierno, por el que se establece para la Comunidad de Madrid el currículo del ciclo formativo de grado superior
+correspondiente al título de Técnico Superior en Desarrollo de Aplicaciones Multiplataforma./
+
+Módulo profesional 01: *Bases de datos* (código: 0484)
+
+Duración: *205 horas*
+
+
 ** Almacenamiento de la información:
 - Ficheros (planos, indexados y acceso directo, de marcas, entre otros).
 - Bases de Datos (BD). Conceptos, usos y tipos según el modelo de datos, la ubicación de la información.
@@ -261,4 +270,72 @@ La mayor de:
 - Modificación y borrado de objetos.
 
 
+* Criterios de evaluación
+
+/Orden EDU/2000/2010, de 13 de julio, por la que se establece el currículo del ciclo formativo de Grado Superior correspondiente al título de Técnico Superior en Desarrollo de Aplicaciones Multiplataforma/
+
+** Crea bases de datos definiendo su estructura y las características de sus elementos según el modelo relacional.
+  1. Se ha analizado el formato de almacenamiento de la información.
+  2. Se han creado las tablas y las relaciones entre ellas.
+  3. Se han seleccionado los tipos de datos adecuados.
+  4. Se han definido los campos clave en las tablas.
+  5. Se han implantado las restricciones reflejadas en el diseño lógico.
+  6. Se han creado vistas.
+  7. Se han creado los usuarios y se les han asignado privilegios.
+  8. Se han utilizando asistentes, herramientas gráficas y los lenguajes de definición y control de datos.
+
+** Reconoce los elementos de las bases de datos analizando sus funciones y valorando la utilidad de los sistemas gestores.
+  1. Se han analizado los sistemas lógicos de almacenamiento y sus características.
+  2. Se han identificado los distintos tipos de bases de datos según el modelo de datos uilizado.
+  3. Se han identificado los distintos tipos de bases de datos en función de la ubicación de la información.
+  4. Se ha evaluado la utilidad de un sistema gestor de bases de datos.
+  5. Se ha reconocido la función de cada uno de los elementos de un sistema gestor de bases de datos.
+  6. Se han clasificado los sistemas gestores de bases de datos.
+  7. Se ha reconocido la utilidad de las bases de datos distribuidas.
+  8. Se han analizado las políticas de fragmentación de la información.
+
+** Consulta la información almacenada en una base de datos empleando asistentes, herramientas gráficas y el lenguaje de manipulación de datos.
+  1. Se han identificado las herramientas y sentencias para realizar consultas.
+  2. Se han realizado consultas simples sobre una tabla.
+  3. Se han realizado consultas sobre el contenido de varias tablas mediante composiciones internas.
+  4. Se han realizado consultas sobre el contenido de varias tablas mediante composiciones externas.
+  5. Se han realizado consultas resumen.
+  6. Se han realizado consultas con subconsultas.
+
+** Modifica la información almacenada en la base de datos utilizando asistentes, herramientas gráficas y el lenguaje de manipulación de datos.
+  1. Se han identificado las herramientas y sentencias para modificar el contenido de la base de datos.
+  2. Se han insertado, borrado y actualizado datos en las tablas.
+  3. Se ha incluido en una tabla la información resultante de la ejecución de una consulta.
+  4. Se han diseñado guiones de sentencias para llevar a cabo tareas complejas.
+  5. Se ha reconocido el funcionamiento de las transacciones.
+  6. Se han anulado parcial o totalmente los cambios producidos por una transacción.
+  7. Se han identificado los efectos de las distintas políticas de bloqueo de registros.
+  8. Se han adoptado medidas para mantener la integridad y consistencia de la información.
+
+** Desarrolla procedimientos almacenados evaluando y utilizando las sentencias del lenguaje incorporado en el sistema gestor de bases de datos.
+  1. Se han identificado las diversas formas de automatizar tareas.
+  2. Se han reconocido los métodos de ejecución de guiones.
+  3. Se han identificado las herramientas disponibles para editar guiones.
+  4. Se han definido y utilizado guiones para automatizar tareas.
+  5. Se ha hecho uso de las funciones proporcionadas por el sistema gestor.
+  6. Se han definido funciones de usuario.
+  7. Se han utilizado estructuras de control de flujo.
+  8. Se han definido disparadores.
+  9. Se han utilizado cursores.
+** Diseña modelos relacionales normalizados interpretando diagramas entidad/relación.
+  1. Se han utilizado herramientas gráficas para representar el diseño lógico.
+  2. Se han identificado las tablas del diseño lógico.
+  3. Se han identificado los campos que forman parte de las tablas del diseño lógico.
+  4. Se han analizado las relaciones entre las tablas del diseño lógico.
+  5. Se han identificado los campos clave.
+  6. Se han aplicado reglas de integridad.
+  7. Se han aplicado reglas de normalización.
+  8. Se han analizado y documentado las restricciones que no pueden plasmarse en el diseño lógico.
+** Gestiona la información almacenada en bases de datos objeto-relacionales, evaluando y utilizando las posibilidades que proporciona el sistema gestor.
+  1. Se han creado tipos de datos objeto, sus atributos y métodos.
+  2. Se han identificado las características de las bases de datos objeto- relacionales.
+  3. Se han creado tablas de objetos y tablas de columnas tipo objeto.
+  4. Se han creado tipos de datos colección.
+  5. Se han realizado consultas.
+  6. Se ha modificado la información almacenada manteniendo la integridad y consistencia de los datos.
 
