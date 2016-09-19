@@ -91,3 +91,85 @@ La mayor de:
 - Las notas pueden calcularse con [[file:calculo-notas/calculo-notas.html?evaluaciones=3][el calculador de notas.]]
 
 
+
+
+* Temario
+
+** Diseño lógico relacional
+
+- Representación del problema
+- El modelo de datos
+- Diagramas E/R
+- El modelo E/R ampliado
+- Construcción de un diagrama E/R
+- El modelo relacional
+- Transformación de un diagrama E/R al modelo relacional
+- Normalización
+
+** Diseño físico relacional
+- Notación para la sintaxis
+- Herramientas gráficas proporcionadas por los SGBD
+- Intérpretes de comandos de los SGBD
+- El lenguaje de definición de datos
+- Creación de bases de datos
+- Modificación de una base de datos
+- Borrado de bases de datos
+- Creación de tablas
+- Modificación de tablas
+- Borrado de tablas
+- Renombrado de tablas
+
+** Realización de consultas
+- El lenguaje DML
+- La sentencia SELECT
+- Consultas básicas
+- Filtros
+- Ordenación
+- Consultas de resumen
+- Subconsultas
+- Consultas multitabla
+- Consultas reflexivas
+- Consultas con tablas derivadas
+
+** Edición de los datos 
+- Herramientas gráficas para la edición de los datos
+- La sentencia INSERT
+- La sentencia INSERT extendida
+- INSERT y SELECT
+- La sentencia UPDATE
+- La sentencia DELETE
+- La sentencias UPDATE y DELETE con subconsultas
+- Borrado y modificación de registros con relaciones
+- Transacciones
+- Acceso concurrente a los datos
+- Las vistas
+- Los usuarios
+- Los privilegios
+
+** Construcción de scripts
+- Introducción a la programación de bases de datos
+- Los lenguajes de programación de bases de datos
+- Tipos de datos, identificadores y variables
+- Operadores y expresiones
+- Estructuras de control
+- Gestión de errores
+- Transacciones en scripts
+
+
+** BBDD Distribuidas 
+- BBDD y SGBD Distribuidos
+- Técnicas de fragmentación
+- Transacciones distribuidas
+- Optimización en transacciones distribuidas
+
+** BBDD Objeto-Relacionales 
+- Las bases de datos objeto-relacionales
+- Los atributos multivaluados
+- Los identificadores de objetos
+- Los métodos
+- La herencia
+- Operaciones DML
+- Las referencias
+
+
+
