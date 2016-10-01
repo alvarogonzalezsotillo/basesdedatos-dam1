@@ -1,0 +1,54 @@
+
+* RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
+
+** ¿Cuáles son las descripciones de los tipos de notas que se pueden poner?
+
+** ¿Cuál es la mejor nota en la sección con identificador 86?
+
+** ¿Cuál es la mejor nota del alumno con identificador 102?
+
+** ¿Cuál es el identificador del alumno con la mejor nota en la sección con identificador 86?
+
+** ¿En qué fecha comienza la primera sección?
+
+** ¿En qué fecha comienza la última sección?
+
+** ¿Que aulas (location) se usan por las secciones?
+
+** ¿Cuántas aulas (location) se usan por las secciones?
+
+** ¿Cuál es el identificador del alumno con la peor nota en la sección con identificador 86?
+
+** ¿Cuál es el identificador del alumno con la mejor nota de proyecto (PJ) en la sección con identificador 86?
+
+** ¿Cuál es la media de las notas de proyecto (PJ) en la sección con identificador 86?
+
+** ¿Cuántos alumnos hay matriculados en la sección con identificador 86?
+
+** ¿Cuántas secciones hay?
+
+** ¿Cuál es la media de capacidad de las secciones?
+
+** ¿Cuáles son las clases (sin duplicados) en las que se imparten secciones con más de 20 alumnos?
+
+** ¿Cuáles son las clases (sin duplicados) en las que se imparten secciones con menos de 15 alumnos?
+
+** ¿Qué nota alfabética consigo con un 72 numérico?
+
+** ¿Qué rango de nota numérica puede tener un alumno que ha conseguido un B+?
+
+** ¿Cuántos códigos postales hay en la ciudad de New York?
+
+** ¿Cuántos códigos postales hay en el estado de New York (NY)?
+
+** ¿Cuántos estados hay en Estados Unidos?
+
+** ¿Cuántos alumnos varones hay? (los reverendos son varones)
+
+** ¿Cuántas alumnas hay?
+
+** ¿Cuáles son las descripciones de los cursos que necesitan un curso previo?
+
+
+
+
