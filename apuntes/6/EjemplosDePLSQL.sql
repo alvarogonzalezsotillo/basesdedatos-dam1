@@ -1,4 +1,7 @@
---------------------------------------------------------------------------------
+
+* MATRICULAR UN HERMANO
+Un hermano comparte todos los datos, excepto el nombre y el tratamiento
+#+begin_src sql
 create or replace 
 PROCEDURE MATRICULAR_HERMANO(student_id_existente number, saludo_hermano varchar, nombre_hermano varchar) AS 
   alumno_existente student%ROWTYPE;
@@ -13,8 +16,9 @@ BEGIN
   insert into student values alumno_existente;
   
 END MATRICULAR_HERMANO;
-
+#+end_src
 --------------------------------------------------------------------------------
+#+begin_src sql
 create or replace 
 FUNCTION MEDIA_DE_GRADES(minimo number) RETURN number AS 
   total number;
@@ -33,8 +37,9 @@ BEGIN
   return total/numero;
   
 END MEDIA_DE_GRADES;
-
+#+end_src
 --------------------------------------------------------------------------------
+#+begin_src sql
 create or replace 
 FUNCTION SUMACOSTES RETURN NUMBER AS 
   CURSOR c_courses is select cost, course_no from course;
@@ -58,9 +63,10 @@ BEGIN
   close c_courses;
   return resultado;
 END;
-
+#+end_src
 ---------------------------------------------------------------------------------
-  CREATE OR REPLACE TRIGGER "ALUMNO"."PONER_ID_A_STUDENT" 
+#+begin_src sql
+CREATE OR REPLACE TRIGGER "ALUMNO"."PONER_ID_A_STUDENT" 
    before insert on "ALUMNO"."STUDENT" 
    for each row 
 begin  
@@ -71,8 +77,9 @@ begin
    end if; 
 end;
 ALTER TRIGGER "ALUMNO"."PONER_ID_A_STUDENT" ENABLE;
-
+#+end_src
 ---------------------------------------------------------------------------------
+#+begin_src sql
 CREATE TRIGGER COMPROBAR_SUELDO
 BEFORE
 INSERT OR UPDATE OF SALARIO, PUESTO ON EMPLEADOS
@@ -86,16 +93,19 @@ IF (:NEW.SALARIO < 100000 OR
 RAISE SUELDO_FUERA_RANGO;
 END IF;
 END;
+#+end_src
 -------------------------------------------------------------------------------------
 
+#+begin_src sql
 CREATE OR REPLACE TRIGGER MASA_SALARIAL_BORRANDO 
 BEFORE DELETE ON SUELDOS 
 FOR EACH ROW 
 BEGIN
   UPDATE masasalarialtotal set total = total - :old.sueldo;
 END; 
-
+#+end_src
 --------------------------------------------------------------------------------------
+#+begin_src sql
 CREATE OR REPLACE TRIGGER MENOR_DE_UN_MILLON 
 BEFORE INSERT or update ON SUELDOS
 for each row
@@ -123,11 +133,13 @@ BEGIN
   
   update masasalarialtotal set total = masasalarial;
 END;
-
+#+end_src
 --------------------------------------------------------------------------------------
+#+begin_src sql
 CREATE OR REPLACE PROCEDURE INICIALIZA_MASA_SALARIAL_TOTAL AS 
   t number;
 BEGIN
   select sum(sueldo) into t from sueldos;
   update masasalarialtotal set total = t;
 END INICIALIZA_MASA_SALARIAL_TOTAL;
+#+end_src
