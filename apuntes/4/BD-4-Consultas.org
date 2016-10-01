@@ -1,4 +1,5 @@
-﻿* RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
+﻿#+include: "../common/header.org"
+* RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
 
 ** ¿Cuáles son las descripciones de los cursos que son requisito para otro curso?
 
@@ -141,8 +142,10 @@ from
 ** Nombre y apellidos del profesor que suele poner notas más altas
 
 ** Nota numérica de la alumna Angela Torres en la sección 102
-** Cálculo: Se realiza un promedio de cada tipo de nota. Estos promedios se ponderan con el peso especificado.
-** Nota: ignoramos el criterio de no contar la más baja
+** Cálculo de la nota de cada alumno 
+Se realiza un promedio de cada tipo de nota.
+Estos promedios se ponderan con el peso especificado.
+Nota: ignoramos el criterio de no contar la más baja
 
 ** Notas numéricas de la alumna Angela Torres en todos sus cursos (nota numérica, descripción del curso)
 
