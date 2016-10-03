@@ -1,6 +1,5 @@
 #+include: "../common/header.org"
 #+Title: Bases de datos
-#+SUBTITLE: CÓDIGO: ????
 #+KEYWORDS: 
 #+REVEAL_THEME: serif
 
