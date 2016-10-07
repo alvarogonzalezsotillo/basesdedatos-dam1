@@ -93,17 +93,28 @@ La mayor de:
 
 
 * Temario
+** Introducción a las bases de datos
+- Ficheros
+  - Campos
+  - Registros
+- Organización de la información
+  - Secuencial
+  - Indexada
+- Bases de datos
+  - Objetivos
+  - Niveles ANSI/SPARC
+  - Funciones
 
 ** Diseño lógico relacional
 
-- Representación del problema
-- El modelo de datos
-- Diagramas E/R
-- El modelo E/R ampliado
-- Construcción de un diagrama E/R
-- El modelo relacional
-- Transformación de un diagrama E/R al modelo relacional
-- Normalización
+ - Representación del problema
+ - El modelo de datos
+ - Diagramas E/R
+ - El modelo E/R ampliado
+ - Construcción de un diagrama E/R
+ - El modelo relacional
+ - Transformación de un diagrama E/R al modelo relacional
+ - Normalización
 
 ** Diseño físico relacional
 - Notación para la sintaxis
