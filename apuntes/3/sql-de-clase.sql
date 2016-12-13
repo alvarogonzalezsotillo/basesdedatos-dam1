@@ -17,6 +17,17 @@ create table lineaspedidos(
   foreign key (idproducto) references productos(idproducto)
 );
 
+-- UN PEDIDO CON CUATRO ZANAHORIAS Y DOS PERAS
+-- LAS PERAS ESTÁN A 1€ Y LAS ZANAHORIAS A 0.25€
+INSERT INTO productos (idproducto,nombre,precio) 
+                values(100, 'zanahorias', 0.25);
+INSERT INTO productos (idproducto,nombre,precio) 
+                values(101, 'peras', 1);
+INSERT INTO PEDIDOS(idpedido) values(50);
+insert into lineaspedidos(idpedido,idproducto,cantidad)
+                   values(50,100,4);
+insert into lineaspedidos(idpedido,idproducto,cantidad)
+                   values(50,101,2);
 
 
 -- CREAR UN USUARIO
