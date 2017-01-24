@@ -2,9 +2,7 @@
 * RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
 
 ** ¿Cuáles son las descripciones de los cursos que son requisito para otro curso?
-
 ** Lista de alumnos, ordenados por apellidos y nombre (saludo, apellidos, nombre, estado de origen)
-
 ** Lista de los 20 primeros alumnos, ordenados (ascendente) por apellidos y nombre (saludo, apellidos, nombre, estado de origen)
 #+begin_src sql
 select salutation, last_name, first_name, state
@@ -32,7 +30,6 @@ from(
 where fila > 20 and fila <= 4
 #+end_src
 
-
 ** Lista de los 20 últimos alumnos, ordenados (ascendente) por apellidos y nombre (saludo, apellidos, nombre, estado de origen)
 #+begin_src sql
 select fila, salutation, last_name, first_name, state
@@ -50,6 +47,7 @@ fila > (select count(*) from student)-20
 #+end_src
 
 ** Lista de las secciones con el número máximo de alumnos que podrían estar en esa seccion
+** Lista de las secciones que tienen matriculados su número máximo de alumnos
 #+begin_src sql
 select section_id 
 from section s
@@ -106,9 +104,7 @@ from
 #+end_src
 
 ** Lista de las notas parciales obtenidas por los reverendos (nombre y apellidos del alumno, nota numérica, curso, tipo de nota)
-
 ** Lista de las notas parciales otorgadas por los reverendos (nombre y apellidos del alumno, nota numérica, curso, tipo de nota)
-
 ** Lista del número de alumnos de cada estado que asisten al curso "Operating Systems"
 
 ** Lista de los profesores y los cursos que imparten (nombre, apellidos, descripción del curso)

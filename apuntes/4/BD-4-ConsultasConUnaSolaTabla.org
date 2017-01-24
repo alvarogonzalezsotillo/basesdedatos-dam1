@@ -1,6 +1,12 @@
 
 * RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
 
+** Nota media
+** Nota media de los exámenes finales
+** Número de alumnos totales
+** Número de alumnos con tratamiento 'Ms'
+** Número de alumnos con tratamiento 'Ms' o 'Mr'
+
 ** ¿Cuáles son las descripciones de los tipos de notas que se pueden poner?
 
 ** ¿Cuál es la mejor nota en la sección con identificador 86?
@@ -10,10 +16,10 @@
 ** ¿Cuál es el identificador del alumno con la mejor nota en la sección con identificador 86?
 
 ** ¿En qué fecha comienza la primera sección?
-
+select min(start_date_time) from section;
 ** ¿En qué fecha comienza la última sección?
-
-** ¿Que aulas (location) se usan por las secciones?
+select max(start_date_time) from section;
+** ¿Qué aulas (location) se usan por las secciones?
 
 ** ¿Cuántas aulas (location) se usan por las secciones?
 
@@ -45,7 +51,7 @@
 
 ** ¿Cuántos alumnos varones hay? (los reverendos son varones)
 
-** ¿Cuántas alumnas hay?
+** ¿Cuántas alumnas hay? (los doctores son mujeres)
 
 ** ¿Cuáles son las descripciones de los cursos que necesitan un curso previo?
 
