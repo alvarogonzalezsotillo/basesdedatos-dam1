@@ -5,31 +5,31 @@
 
 
 * Introducción
- - *Oracle* es un servidor de base de datos
- - Se utiliza mediante una conexión de red
- - Para hacer *Oracle* accesible por red a otros ordenadores es necesario:
- - Configurar correctamente el nivel físico, enlace y red (/IP/)
- - Conocer los datos de conexión al servidor
+- *Oracle* es un servidor de base de datos
+- Se utiliza mediante una conexión de red
+- Para hacer *Oracle* accesible por red a otros ordenadores es necesario:
+  - Configurar correctamente el nivel físico, enlace y red (/IP/)
+  - Conocer los datos de conexión al servidor
 
 * Nivel físico (máquina virtual)
- - *Oracle* está instalado en una máquina virtual
- - Es necesario que la máquina virtual esté accesible desde la real
+- *Oracle* está instalado en una máquina virtual
+- Es necesario que la máquina virtual esté accesible desde la real
  - ... o desde otros ordenadores de la red
- - Opciones:
+- Opciones:
  - Red /Host only/ (solo anfitrión): el ordenador real puede acceder a la virtual
  - Red /Bridged/ (puente): el ordenador virtual está conectado a la red real
 
 ** Importante: dirección *Mac*
- - Es necesario cambiar la dirección *Mac* de las tarjetas virtuales de red
+- Es necesario cambiar la dirección *Mac* de las tarjetas virtuales de red
 
 ** Repito: dirección *Mac*
- - Es necesario cambiar la dirección *Mac* de las tarjetas virtuales de red
- - Hazlo ya
+- Es necesario cambiar la dirección *Mac* de las tarjetas virtuales de red
+- Hazlo ya
 
 ** No sé si está claro: dirección *Mac*
- - Es necesario cambiar la dirección *Mac* de las tarjetas virtuales de red
- - Hazlo otra vez
- - Aunque creas que ya lo has hecho
+- Es necesario cambiar la dirección *Mac* de las tarjetas virtuales de red
+- Hazlo otra vez
+- Aunque creas que ya lo has hecho
 
 
 

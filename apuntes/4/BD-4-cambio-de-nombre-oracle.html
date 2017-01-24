@@ -1639,16 +1639,16 @@ body {
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Oracle accesible por red</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2017-01-24 mar 09:52</p>
+<section id="sec-title-slide"><h1 class="title">Oracle accesible por red</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2017-01-24 mar 11:24</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-orgf08d6cf">1. Introducción</a></li>
-<li><a href="#/slide-orga15f3fb">2. Nivel físico (máquina virtual)</a></li>
-<li><a href="#/slide-orgb581a6f">3. Nivel de red (<i>IP</i>)</a></li>
+<li><a href="#/slide-org6a4ae73">1. Introducción</a></li>
+<li><a href="#/slide-orgef68ef8">2. Nivel físico (máquina virtual)</a></li>
+<li><a href="#/slide-org1803aa5">3. Nivel de red (<i>IP</i>)</a></li>
 </ul>
 </div>
 </div>
@@ -1983,15 +1983,18 @@ g3qyy9RjAAAAAElFTkSuQmCC" />
 
 
 <section>
-<section id="slide-orgf08d6cf">
+<section id="slide-org6a4ae73">
 <div class="slide-header"></div>
-<h2 id="orgf08d6cf"><span class="section-number-2">1</span> Introducción</h2>
+<h2 id="org6a4ae73"><span class="section-number-2">1</span> Introducción</h2>
 <ul>
 <li><b>Oracle</b> es un servidor de base de datos</li>
 <li>Se utiliza mediante una conexión de red</li>
-<li>Para hacer <b>Oracle</b> accesible por red a otros ordenadores es necesario:</li>
+<li>Para hacer <b>Oracle</b> accesible por red a otros ordenadores es necesario:
+<ul>
 <li>Configurar correctamente el nivel físico, enlace y red (<i>IP</i>)</li>
 <li>Conocer los datos de conexión al servidor</li>
+
+</ul></li>
 
 </ul>
 
@@ -1999,24 +2002,30 @@ g3qyy9RjAAAAAElFTkSuQmCC" />
 </section>
 </section>
 <section>
-<section id="slide-orga15f3fb">
+<section id="slide-orgef68ef8">
 <div class="slide-header"></div>
-<h2 id="orga15f3fb"><span class="section-number-2">2</span> Nivel físico (máquina virtual)</h2>
+<h2 id="orgef68ef8"><span class="section-number-2">2</span> Nivel físico (máquina virtual)</h2>
 <ul>
 <li><b>Oracle</b> está instalado en una máquina virtual</li>
-<li>Es necesario que la máquina virtual esté accesible desde la real</li>
+<li>Es necesario que la máquina virtual esté accesible desde la real
+<ul>
 <li>&#x2026; o desde otros ordenadores de la red</li>
-<li>Opciones:</li>
+
+</ul></li>
+<li>Opciones:
+<ul>
 <li>Red <i>Host only</i> (solo anfitrión): el ordenador real puede acceder a la virtual</li>
 <li>Red <i>Bridged</i> (puente): el ordenador virtual está conectado a la red real</li>
+
+</ul></li>
 
 </ul>
 
 <div class="slide-footer"></div>
 </section>
-<section id="slide-orgca7624b">
+<section id="slide-org93b06bf">
 <div class="slide-header"></div>
-<h3 id="orgca7624b"><span class="section-number-3">2.1</span> Importante: dirección <b>Mac</b></h3>
+<h3 id="org93b06bf"><span class="section-number-3">2.1</span> Importante: dirección <b>Mac</b></h3>
 <ul>
 <li>Es necesario cambiar la dirección <b>Mac</b> de las tarjetas virtuales de red</li>
 
@@ -2024,9 +2033,9 @@ g3qyy9RjAAAAAElFTkSuQmCC" />
 
 <div class="slide-footer"></div>
 </section>
-<section id="slide-orgaf0b8b7">
+<section id="slide-org1108c70">
 <div class="slide-header"></div>
-<h3 id="orgaf0b8b7"><span class="section-number-3">2.2</span> Repito: dirección <b>Mac</b></h3>
+<h3 id="org1108c70"><span class="section-number-3">2.2</span> Repito: dirección <b>Mac</b></h3>
 <ul>
 <li>Es necesario cambiar la dirección <b>Mac</b> de las tarjetas virtuales de red</li>
 <li>Hazlo ya</li>
@@ -2035,9 +2044,9 @@ g3qyy9RjAAAAAElFTkSuQmCC" />
 
 <div class="slide-footer"></div>
 </section>
-<section id="slide-org53b0dd8">
+<section id="slide-orge34e4d6">
 <div class="slide-header"></div>
-<h3 id="org53b0dd8"><span class="section-number-3">2.3</span> No sé si está claro: dirección <b>Mac</b></h3>
+<h3 id="orge34e4d6"><span class="section-number-3">2.3</span> No sé si está claro: dirección <b>Mac</b></h3>
 <ul>
 <li>Es necesario cambiar la dirección <b>Mac</b> de las tarjetas virtuales de red</li>
 <li>Hazlo otra vez</li>
@@ -2051,9 +2060,9 @@ g3qyy9RjAAAAAElFTkSuQmCC" />
 </section>
 </section>
 <section>
-<section id="slide-orgb581a6f">
+<section id="slide-org1803aa5">
 <div class="slide-header"></div>
-<h2 id="orgb581a6f"><span class="section-number-2">3</span> Nivel de red (<i>IP</i>)</h2>
+<h2 id="org1803aa5"><span class="section-number-2">3</span> Nivel de red (<i>IP</i>)</h2>
 <ul>
 <li>La máquina virtual está configurada para usar <a href="https://es.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP</a></li>
 <li>No es necesario realizar ningún ajuste adicional</li>
@@ -2068,9 +2077,9 @@ g3qyy9RjAAAAAElFTkSuQmCC" />
 
 <div class="slide-footer"></div>
 </section>
-<section id="slide-orgc461791">
+<section id="slide-orge5ad739">
 <div class="slide-header"></div>
-<h3 id="orgc461791"><span class="section-number-3">3.1</span> Comprobar <i>IP</i></h3>
+<h3 id="orge5ad739"><span class="section-number-3">3.1</span> Comprobar <i>IP</i></h3>
 <ul>
 <li>En linux, consultar la dirección <i>IP</i> con <code>ifconfig</code> o <code>hostname -I</code></li>
 <li>Desde Windows, hacer un <code>ping</code> a esa dirección</li>
@@ -2079,9 +2088,9 @@ g3qyy9RjAAAAAElFTkSuQmCC" />
 
 <div class="slide-footer"></div>
 </section>
-<section id="slide-orged21299">
+<section id="slide-org6c833cb">
 <div class="slide-header"></div>
-<h3 id="orged21299"><span class="section-number-3">3.2</span> Nombre del servidor</h3>
+<h3 id="org6c833cb"><span class="section-number-3">3.2</span> Nombre del servidor</h3>
 <ul>
 <li>La máquina virtual tiene como nombre <code>fedora-64-bbdd-alumno</code></li>
 <li>Hay que cambiarlo:
@@ -2095,6 +2104,11 @@ g3qyy9RjAAAAAElFTkSuQmCC" />
 <li><code>/etc/hosts</code></li>
 <li><code>/u01/app/oracle/product/11.2.0/xe/network/admin/listener.ora</code></li>
 <li><code>/u01/app/oracle/product/11.2.0/xe/network/admin/tnsnames.ora</code></li>
+
+</ul></li>
+<li>Después
+<ul>
+<li>Cruzar los dedos y reiniciar</li>
 
 </ul></li>
 
@@ -2199,31 +2213,32 @@ EXTPROC_CONNECTION_DATA =
 
 <div class="slide-footer"></div>
 </section>
-<section id="slide-orga65ed26">
+<section id="slide-org2afc6d3">
 <div class="slide-header"></div>
-<h3 id="orga65ed26"><span class="section-number-3">3.3</span> Nombres de Windows: <b>Samba</b></h3>
+<h3 id="org2afc6d3"><span class="section-number-3">3.3</span> Nombres de Windows: <b>Samba</b></h3>
 <ul>
 <li>En Linux, <b>Samba</b> proporciona interoperabilidad con redes de Windows</li>
-<li><b>Samba</b> está ya instalado en <b>Fedora</b>. Si no estuviera instalado:</li>
-
-</ul>
-<div class="org-src-container">
-
-<pre><code class="shell" >sudo yum install samba
-</code></pre>
-</div>
+<li><b>Samba</b> está ya instalado en <b>Fedora</b>.</li>
+<li>Si no estuviera instalado:
 <ul>
-<li>En el fichero <code>/etc/samba/smb.conf</code> buscar la línea con <code>netbios name</code>
-<ul>
-<li>Cambiar el nombre a <code>minombre-bd</code></li>
+<li><code>sudo yum install samba</code></li>
 
 </ul></li>
-<li>Reiniciar <b>Samba</b> con <code>sudo service smbd restart</code></li>
-<li>Comprobar desde Windows que el nombre es correcto
+<li>En el fichero <code>/etc/samba/smb.conf</code> buscar la línea con <code>netbios name</code></li>
+<li>Cambiar el nombre a <code>minombre-bd</code>
 <ul>
-<li><code>ping minombre-bd</code></li>
+<li>Reiniciar <b>Samba</b> con <code>sudo systemctl restart smb</code></li>
+<li>Reiniciar el servidor de nombres de <b>Samba</b> con <code>sudo systemctl restart nmb</code></li>
+<li>Dejar activados los servicios para el siguiente reinicio:
+<ul>
+<li><code>sudo systemctl enable nmb</code></li>
+<li><code>sudo systemctl enable smb</code></li>
 
 </ul></li>
+<li>Comprobar desde Windows que el nombre es correcto</li>
+
+</ul></li>
+<li><code>ping alumnobd</code> desde Windows</li>
 
 </ul>
 <div class="slide-footer"></div>
