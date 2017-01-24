@@ -16,9 +16,13 @@
 ** ¿Cuál es el identificador del alumno con la mejor nota en la sección con identificador 86?
 
 ** ¿En qué fecha comienza la primera sección?
+#+begin_src sql
 select min(start_date_time) from section;
+#+end_src
 ** ¿En qué fecha comienza la última sección?
+#+begin_src sql
 select max(start_date_time) from section;
+#+end_src
 ** ¿Qué aulas (location) se usan por las secciones?
 
 ** ¿Cuántas aulas (location) se usan por las secciones?
