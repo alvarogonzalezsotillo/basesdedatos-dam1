@@ -1,5 +1,9 @@
 otros
-gift
-examenes
-evaluacion
-cuestionarios
+*.aux
+*.out
+*.toc
+*.log
+*.synctex.gz
+*.el
+/copia_de_seguridad-bas.dat-20130901-1650.zip
+~$*
