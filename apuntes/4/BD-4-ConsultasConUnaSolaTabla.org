@@ -64,11 +64,19 @@ group by last_name
 order by cuantos desc;
 
 ** Lista de apellidos de alumnos, y la fecha del primer registro de un alumno con ese apellido
-select last_name, min(registration_date)
+select count(*), last_name, min(registration_date)
 from student
 group by last_name
-order by cuantos desc;
+order by last_name;
 
+select last_name, registration_date
+from student studentdefuera
+where registration_date = (
+  select min(registration_date)
+  from student studentdedentro
+  where studentdedentro.last_name=studentdefuera.last_name
+)
+order by last_name;
 
 ** ¿Qué aulas (location) se usan por las secciones?
 
@@ -86,9 +94,10 @@ order by cuantos desc;
 
 ** ¿Cuál es la media de capacidad de las secciones?
 
-** ¿Cuáles son las clases (sin duplicados) en las que se imparten secciones con más de 20 alumnos?
+** ¿Cuál es el máximo de alumnos matriculable (suma de capacidades de las secciones)?
+** ¿Cuáles son las clases (location) en las que se imparten secciones con más de 20 alumnos?
 
-** ¿Cuáles son las clases (sin duplicados) en las que se imparten secciones con menos de 15 alumnos?
+** ¿Cuáles son las clases (location) en las que se imparten secciones con menos de 15 alumnos?
 
 ** ¿Qué nota alfabética consigo con un 72 numérico?
 
