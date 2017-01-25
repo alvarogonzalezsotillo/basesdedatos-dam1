@@ -2,12 +2,35 @@
 * RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
 
 ** Nota media
+select avg(numeric_grade)
+from grade
 ** Nota media de los exámenes finales
+select avg(numeric_grade)
+from grade
+where grade_type_code='FI';
 ** Número de alumnos totales
+select count(*)
+from student;
 ** Número de alumnos con tratamiento 'Ms'
+select count(*)
+from student
+where salutation='Ms.'
 ** Número de alumnos con tratamiento 'Ms' o 'Mr'
 
+select count(*)
+from student
+where salutation in( 'Ms.', 'Mr.');
 ** ¿Cuáles son las descripciones de los tipos de notas que se pueden poner?
+select grade_type_code, description from GRADE_TYPE;
+
+** Alumnos cuyo nombre comience por 'o' (mayúscula o minúscula)
+select * from student
+where lower(first_name) like 'o%';
+
+** Alumnos con un nombre de 4 letras
+select * from student
+where first_name like '____';
+
 
 ** ¿Cuál es la mejor nota en la sección con identificador 86?
 
@@ -16,13 +39,37 @@
 ** ¿Cuál es el identificador del alumno con la mejor nota en la sección con identificador 86?
 
 ** ¿En qué fecha comienza la primera sección?
-#+begin_src sql
 select min(start_date_time) from section;
-#+end_src
+
+** Datos de la sección que emieza la última
+select * 
+from section
+where start_date_time=(
+  select max(start_date_time) from section
+);
+
+
 ** ¿En qué fecha comienza la última sección?
-#+begin_src sql
 select max(start_date_time) from section;
-#+end_src
+
+** Lista de alumnos ordenados por apellido (sin importar minúsculas)
+select first_name,last_name,student_id, lower(last_name) as paraordenar 
+from student
+order by paraordenar;
+
+** Lista de apellidos de alumnos, y cuántos alumnos tienen cada apellido
+select count(*) as cuantos, last_name
+from student
+group by last_name
+order by cuantos desc;
+
+** Lista de apellidos de alumnos, y la fecha del primer registro de un alumno con ese apellido
+select last_name, min(registration_date)
+from student
+group by last_name
+order by cuantos desc;
+
+
 ** ¿Qué aulas (location) se usan por las secciones?
 
 ** ¿Cuántas aulas (location) se usan por las secciones?
@@ -58,6 +105,9 @@ select max(start_date_time) from section;
 ** ¿Cuántas alumnas hay? (los doctores son mujeres)
 
 ** ¿Cuáles son las descripciones de los cursos que necesitan un curso previo?
+
+
+
 
 
 
