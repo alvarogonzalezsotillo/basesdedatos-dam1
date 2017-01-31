@@ -94,8 +94,13 @@ order by last_name;
 
 ** ¿Cuál es la media de capacidad de las secciones?
 
+** ¿Cuál es la media de capacidad de las aulas (location)?
+
+
 ** ¿Cuál es el máximo de alumnos matriculable (suma de capacidades de las secciones)?
 ** ¿Cuáles son las aulas (location) en las que se imparten secciones con más de 20 alumnos?
+select distinct location from section
+where capacity>20;
 
 ** ¿Cuáles son las aulas (location) en las que se imparten secciones con menos de 15 alumnos?
 
