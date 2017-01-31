@@ -41,7 +41,7 @@ where first_name like '____';
 ** ¿En qué fecha comienza la sección que primero empieza sus clases?
 select min(start_date_time) from section;
 
-** Datos de la sección que emieza la última
+** Datos de la sección que empieza la última
 select * 
 from section
 where start_date_time=(
@@ -95,11 +95,12 @@ order by last_name;
 ** ¿Cuál es la media de capacidad de las secciones?
 
 ** ¿Cuál es el máximo de alumnos matriculable (suma de capacidades de las secciones)?
-** ¿Cuáles son las clases (location) en las que se imparten secciones con más de 20 alumnos?
+** ¿Cuáles son las aulas (location) en las que se imparten secciones con más de 20 alumnos?
 
-** ¿Cuáles son las clases (location) en las que se imparten secciones con menos de 15 alumnos?
+** ¿Cuáles son las aulas (location) en las que se imparten secciones con menos de 15 alumnos?
 
 ** ¿Qué nota alfabética consigo con un 72 numérico?
+** ¿Qué nota alfabética consigo con un 74 numérico?
 
 ** ¿Qué rango de nota numérica puede tener un alumno que ha conseguido un B+?
 
@@ -107,7 +108,7 @@ order by last_name;
 
 ** ¿Cuántos códigos postales hay en el estado de New York (NY)?
 
-** ¿Cuántos estados hay en Estados Unidos?
+** ¿Cuántos estados hay registrados en la base de datos?
 
 ** ¿Cuántos alumnos varones hay? (los reverendos son varones)
 
