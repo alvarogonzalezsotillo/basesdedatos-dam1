@@ -38,7 +38,7 @@ where first_name like '____';
 
 ** ¿Cuál es el identificador del alumno con la mejor nota en la sección con identificador 86?
 
-** ¿En qué fecha comienza la primera sección?
+** ¿En qué fecha comienza la sección que primero empieza sus clases?
 select min(start_date_time) from section;
 
 ** Datos de la sección que emieza la última
