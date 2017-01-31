@@ -105,15 +105,39 @@ where capacity>20;
 ** ¿Cuáles son las aulas (location) en las que se imparten secciones con menos de 15 alumnos?
 
 ** ¿Qué nota alfabética consigo con un 72 numérico?
+
+select letter_grade from GRADE_CONVERSION
+where 72 >= min_grade and 72 <=max_grade;
+
+select letter_grade from GRADE_CONVERSION
+where 72 between min_grade and max_grade;
+
 ** ¿Qué nota alfabética consigo con un 74 numérico?
 
+select letter_grade from GRADE_CONVERSION
+where 74 between min_grade and max_grade;
+
 ** ¿Qué rango de nota numérica puede tener un alumno que ha conseguido un B+?
+select min_grade, max_grade from GRADE_CONVERSION
+where letter_grade='B+';
+
 
 ** ¿Cuántos códigos postales hay en la ciudad de New York?
 
+
+select count(*) from zipcode where city='New York';
 ** ¿Cuántos códigos postales hay en el estado de New York (NY)?
+select count(*) from zipcode where state='NY';
 
 ** ¿Cuántos estados hay registrados en la base de datos?
+select count(state)
+from (
+  select state from zipcode
+  group by state
+);
+
+select count(distinct state)
+from zipcode;
 
 ** ¿Cuántos alumnos varones hay? (los reverendos son varones)
 
@@ -121,6 +145,7 @@ where capacity>20;
 
 ** ¿Cuáles son las descripciones de los cursos que necesitan un curso previo?
 
+select * from course where not(prerequisite is null);
 
 
 
