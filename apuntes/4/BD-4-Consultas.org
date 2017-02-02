@@ -2,6 +2,10 @@
 * RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
 
 ** ¿Cuáles son las descripciones de los cursos que son requisito para otro curso?
+
+select distinct pre.DESCRIPTION
+from course c, course pre
+where c.PREREQUISITE = pre.course_no;
 ** Lista de alumnos, ordenados por apellidos y nombre (saludo, apellidos, nombre, estado de origen)
 ** Lista de los 20 primeros alumnos, ordenados (ascendente) por apellidos y nombre (saludo, apellidos, nombre, estado de origen)
 #+begin_src sql
@@ -104,6 +108,20 @@ from
 #+end_src
 
 ** Lista de las notas parciales obtenidas por los reverendos (nombre y apellidos del alumno, nota numérica, curso, tipo de nota)
+select 
+  st.last_name, st.first_name,
+  g.NUMERIC_GRADE , g.GRADE_TYPE_CODE , g.GRADE_CODE_OCCURRENCE,
+  se.course_no
+from 
+  student st, ENROLLMENT e, grade g, section se
+where
+  st.salutation = 'Rev.' and
+  st.student_id = e.student_id and
+  e.student_id = g.student_id and
+  e.section_id = g.section_id and
+  e.section_id = se.section_id
+order by last_name, first_name;
+
 ** Lista de las notas parciales otorgadas por los reverendos (nombre y apellidos del alumno, nota numérica, curso, tipo de nota)
 ** Lista del número de alumnos de cada estado que asisten al curso "Operating Systems"
 
