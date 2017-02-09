@@ -190,4 +190,8 @@ Nota: ignoramos el criterio de no contar la más baja
 ** Lista de ingresos por profesor (nombre, apellidos, ingresos)
 
 ** Lista de ingresos por alumno (nombre, apellidos, ingresos)
-** Lista de cursos y sus cursos prerrequisito (descripción de curso, descripción de curso prerrequisito). Si un curso no tiene prerrequisito, aparecerá 'SIN PRERREQUISITO'.
+** Lista de cursos y sus cursos prerrequisito (descripción de curso, descripción de curso prerrequisito). Si un curso no tiene prerrequisito, aparecerá en su prerrequisito 'SIN PRERREQUISITO'.
+select * 
+from course c full join course p on c.PREREQUISITE = p.course_no;
+
+** Lista de cursos y sus cursos prerrequisito (descripción de curso, descripción de curso prerrequisito). Si un curso no tiene prerrequisito, aparecerá en su prerrequisito NULL.
