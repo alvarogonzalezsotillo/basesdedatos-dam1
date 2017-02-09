@@ -143,6 +143,10 @@ Se realiza un promedio de cada tipo de nota.
 Estos promedios se ponderan con el peso especificado.
 Nota: ignoramos el criterio de no contar la más baja
 
+** ¿En qué cursos está matriculada Ángela Torres?
+
+** ¿En qué cursos no está matriculada Ángela Torres?
+
 ** Notas numéricas de la alumna Angela Torres en todos sus cursos (nota numérica, descripción del curso)
 
 ** Notas de la alumna Angela Torres en todos sus cursos (nota numérica, nota alfabética, descripción del curso)
