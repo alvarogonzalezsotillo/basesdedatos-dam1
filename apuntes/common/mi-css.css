@@ -1,0 +1,25 @@
+.reveal section img{
+    border: 0px;
+}
+
+.creditos{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+}
+
+.creditos a{
+    font-size: 10px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: gray;
+}
+
+.creditos img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+
