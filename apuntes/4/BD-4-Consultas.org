@@ -195,3 +195,8 @@ select *
 from course c full join course p on c.PREREQUISITE = p.course_no;
 
 ** Lista de cursos y sus cursos prerrequisito (descripción de curso, descripción de curso prerrequisito). Si un curso no tiene prerrequisito, aparecerá en su prerrequisito NULL.
+** Lista de las secciones con mas de 12 alumnos matriculados
+** Lista de los estados con más de 10 alumnos matriculados
+** Lista de los estados con menos de 11 alumnos matriculados
+** Estado(s) con más alumnos matriculados
+
