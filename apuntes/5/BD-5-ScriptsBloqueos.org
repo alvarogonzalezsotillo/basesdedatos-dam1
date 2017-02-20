@@ -35,12 +35,27 @@ select s1.username || '@' || s1.machine
   and l2.id2 = l2.id2 ;
 #+end_src
 
-* Saber la sentencia sql que provoca el bloqueo
-hay que poner el sid bloqueante, no el bloqueado
+* Saber la sentencia sql bloqueada
+hay que poner el sid bloqueado
 #+begin_src sql
 select s.sid, q.sql_text from v$sqltext q, v$session s
 where q.address = s.sql_address
 and s.sid = &sid
+order by piece;
+#+end_src
+
+* Sentencias bloqueadas
+#+begin_src sql
+select s.sid, q.sql_text from v$sqltext q, v$session s
+where q.address = s.sql_address
+and s.sid in (
+  select s2.sid
+  from v$lock l1, v$session s1, v$lock l2, v$session s2
+  where s1.sid=l1.sid and s2.sid=l2.sid
+  and l1.BLOCK=1 and l2.request > 0
+  and l1.id1 = l2.id1
+  and l2.id2 = l2.id2 
+)
 order by piece;
 #+end_src
 
