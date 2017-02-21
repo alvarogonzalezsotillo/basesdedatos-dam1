@@ -44,3 +44,12 @@ FROM role_sys_privs;
 #+begin_src sql
 revoke manejadordezips from agonzalez
 #+end_src
+
+* Aumentar el número de conexiones
+http://www.eddgrant.com/blog/2010/01/20/increasing-the-number-of-processes-in-oracle-xe.html
+#+begin_src sql
+show parameter session
+alter system set sessions=300 scope=spfile;
+alter system set processes=300 scope=spfile;
+shutdown immediate
+#+end_src
