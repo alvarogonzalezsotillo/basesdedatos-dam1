@@ -1,0 +1,241 @@
+\input{../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+\usepackage{needspace}
+
+
+
+
+\renewcommand{\hmwkTitle}{Práctica PLSQL}
+\renewcommand{\hmwkClass}{Bases de datos}
+
+\usepackage{blindtext}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{1em}
+\setlength{\parskip}{1em}
+
+\section{Objetivo de la práctica}
+En esta práctica el alumno utilizará las funcionalidades de PLSQL para automatizar algunas operaciones y para realizar comprobaciones sobre los datos. Estas operaciones y comprobaciones no pueden realizarse solo con SQL.
+
+
+\newcommand{\maximopiezasavion}{15}
+\newcommand{\maximopiezaspieza}{5}
+
+
+\section{Descripción del problema}
+Una compañía aeronáutica necesita informatizar la gestión de las piezas de sus aviones.
+\begin{itemize}
+\item Unas piezas se pueden formar de otras piezas, dando lugar a una pieza compuesta.
+\item Se considera a un avión como una pieza compuesta.
+\item Cada avión está identificado por un número consecutivo.
+\item Las piezas simples no están compuestas de otras piezas. Cada pieza simple tiene un \textit{serial number} único, y un \textit{part number}, que identifica el tipo de pieza.
+\item Un avión puede tener tipos de piezas (\textit{part number}) repetidos (por ejemplo, 2 motores del mismo tipo).
+\item Un avión no se compone nunca de más de {\maximopiezasavion} piezas simples en total.
+\item Una pieza compuesta no se compone nunca de más de {\maximopiezaspieza} piezas simples \textit{directas}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{homeworkProblem}[: Definir el modelo de datos]
+  Crea las tablas y funciones necesarias para soportar la descripción del problema. Las tablas y atributos concretos no son importantes, ya que el profesor consultará los datos a partir de la vista definida más adelante.
+  
+  \begin{itemize}
+  \item Los aviones (y el resto de piezas) se darán de alta usando como identificador el valor de la secuencia \texttt{SECUENCIA\_PIEZA\_ID}, si la orden \texttt{INSERT} no especifica ningún valor.
+    
+  \item Las piezas simples tendrán un \textit{serial number} alfanumérico, que comienza por ``\texttt{SN-}'' y acaba con un número que se extrae de la secuencia \texttt{SECUENCIA\_SERIALNUMBER}
+  \end{itemize}
+
+\end{homeworkProblem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{Avion} \setcounter{Avion}{1}
+\newcounter{SN} \setcounter{SN}{1}
+\newcounter{Asiento} \setcounter{Asiento}{1}
+\newcounter{Motor} \setcounter{Motor}{1}
+\newcommand{\Contador}[1]{%
+  \arabic{#1}%
+  \stepcounter{#1}%
+}
+\newcommand{\FuselajePN}{PN-001}
+\newcommand{\AsientoPN}{PN-002}
+\newcommand{\ControlesPN}{PN-003}
+\newcommand{\MotorPN}{PN-004}
+
+\needspace{.15\textheight}
+\begin{homeworkProblem}[: Procedimiento para crear un avión (2 puntos)]
+  Crea un procedimiento de nombre \texttt{CREAR\_AVION\_TIPO(avion\_id number)} que dé de alta el siguiente avión con el \texttt{ID} especificado:
+  
+  \begin{center}
+    \begin{tabular}{|l|c|c|}
+      \hline
+      \textbf{Nombre de pieza} & \textbf{Serial Number} & \textbf{Part Number} \\
+      \hline
+
+      Avión \Contador{Avion} & & \\
+
+      \hspace{2em}Fuselaje                       & SN-100\Contador{SN} & \FuselajePN \\
+      \hspace{2em}Cabina                         & & \\
+      \hspace{4em}Asiento piloto               & & \\
+      \hspace{6em}Asiento \Contador{Asiento} & SN-100\Contador{SN} & \AsientoPN \\
+      \hspace{6em}Controles                  & SN-100\Contador{SN} & \ControlesPN \\
+      \hspace{4em}Asiento \Contador{Asiento}   & SN-100\Contador{SN} & \AsientoPN \\
+      \hspace{4em}Asiento \Contador{Asiento}   & SN-100\Contador{SN} & \AsientoPN \\
+      \hspace{2em}Motor \Contador{Motor}         & SN-100\Contador{SN} & \MotorPN \\
+      \hspace{2em}Motor \Contador{Motor}         & SN-100\Contador{SN} & \MotorPN \\
+      \hline
+    \end{tabular}
+  \end{center}
+  El procedimiento fallará si alguno de los \textit{serial number} está ya utilizado.
+  
+\end{homeworkProblem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{homeworkProblem}[: Vista para el profesor (1 punto)]
+
+  Crea una vista \texttt{AVIONES\_PROFESOR} que liste todas las piezas, aviones incluidos. Los tipos de las columnas serán los siguientes:
+  
+  \begin{center}
+    \begin{tabular}{|c|c|p{10cm}|}
+      \hline
+      \textbf{Nombre columna} & \textbf{Tipo} & \textbf{Descripción} \\ 
+      \hline
+      \texttt{id} & \texttt{numeric} & Identificador de la pieza \\
+      \texttt{padre\_id} & \texttt{numeric} & Identificador de la pieza padre, o \texttt{null} si es un avión\\
+      \texttt{nombre} & \texttt{varchar} & Nombre de la pieza \\
+      \texttt{sn} & \texttt{varchar} & \texttt{Serial number} de la pieza (\texttt{null} para piezas compuestas)\\
+      \texttt{pn} & \texttt{varchar} & \texttt{Part number}, o tipo de pieza (\texttt{null} para piezas compuestas)\\
+      \hline
+    \end{tabular}
+  \end{center}
+
+  \begin{listadosql}{label}{caption}
+create or replace view AVIONES_PROFESOR(id, padre_id, nombre, sn, pn) as
+select ...
+\end{listadosql}
+
+\end{homeworkProblem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\needspace{.25\textheight}
+\begin{homeworkProblem}[: Procedimientos de limpieza (1 punto)]
+  \begin{itemize}
+  \item Crea un procedimiento \texttt{BORRAR\_AVION} que reciba un identificador de avión y borre
+    todas sus piezas. El procedimiento fallará si el avión no existe.
+  \item Crea un procedimiento \texttt{BORRAR\_AVIONES} que borre todos los aviones (y posibles piezas
+    sueltas) de la base de datos. También reiniciará todas las secuencias que se utilicen.
+  \end{itemize}
+
+  \begin{listadosql}{label}{caption}
+create or replace procedure BORRAR_AVION(avion_id IN number) as ... 
+create or replace procedure BORRAR_AVIONES() as ...
+\end{listadosql}
+
+\end{homeworkProblem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\needspace{.15\textheight}
+\begin{homeworkProblem}[: Procedimientos de copia de piezas y aviones (3 puntos)]
+  \begin{itemize}
+  \item Crea un procedimiento \texttt{COPIAR\_PIEZA}
+    que reciba un identificador de pieza y cree una copia de la misma (\textbf{con todas sus subpiezas}). La nueva pieza
+    formará parte de la pieza \texttt{nueva\_pieza\_destino}. El parámetro \texttt{nueva\_pieza\_id} devolverá el
+    identificador de la nueva pieza.
+
+   
+  \item Crea un procedimiento \texttt{COPIAR\_AVION} que reciba un identificador de avión y cree un avión con el mismo número de piezas y del mismo tipo que
+    el original. El parámetro \texttt{copia\_avion\_id} devolverá el identificador del nuevo avión
+  \end{itemize}
+
+\begin{listadosql}{label}{caption}
+create or replace procedure COPIAR_PIEZA(
+  pieza_id IN number, 
+  nueva_pieza_destino IN number, 
+  nueva_pieza_id OUT number) 
+as
+begin
+  -- HAGO UNA COPIA DE LA PIEZA pieza_id, PERO CON nueva_pieza_destino COMO PADRE.
+  -- PARA CADA PIEZA hija QUE TIENE COMO PADRE A pieza_id:
+  --   HAGO UNA COPIA DE LA PIEZA hija QUE TENGA COMO PADRE A nueva_pieza_id,
+  --   USANDO EL PROCEDIMIENTO COPIAR_PIEZA.
+end; 
+
+create or replace procedure COPIAR_AVION(
+  avion_id IN number, 
+  nuevo_avion_id OUT number) 
+as
+begin
+  -- HAGO UNA COPIA DEL AVION Y DE SUS SUBPIEZAS.
+  -- SEGURAMENTE UTILICE EL PROCEDIMIENTO COPIAR_PIEZA.
+end;
+\end{listadosql}
+
+\end{homeworkProblem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\needspace{.15\textheight}
+\begin{homeworkProblem}[: Funciones de comprobación (3 puntos)]
+  \begin{itemize}
+
+  \item La función \texttt{COMPRUEBA\_AVION(ID)} provocará un error en los siguientes casos:
+    \begin{itemize}
+    \item el avión tiene más de {\maximopiezasavion} piezas simples
+    \item si el \texttt{ID} no es el de un avión.
+    \item si el \texttt{ID} no existe.
+    \end{itemize}
+  \item La función \texttt{COMPRUEBA\_PIEZA(ID)} provocará un error en los siguientes casos:
+    \begin{itemize}
+    \item si la pieza tiene más de {\maximopiezaspieza} piezas simples
+    \item el \texttt{ID} es el de un avión.
+    \item el \texttt{ID} no existe.
+    \end{itemize}
+  \end{itemize}
+
+  
+\begin{listadosql}{label}{caption}
+create or replace function COMPRUEBA_AVION(id IN number) return varchar 
+as
+begin
+  -- SI EL AVION TIENE MUCHAS PIEZAS SIMPLES, O NO ES UN AVION, O NO EXISTE, 
+  --   HAGO UN RAISE_APPLICATION_ERROR
+  -- SI NO, DEVUELVO 'ok'
+end; 
+
+create or replace function COMPRUEBA_PIEZA(id IN number) return varchar 
+as
+begin
+  -- SI LA PIEZA TIENE MUCHAS PIEZAS SIMPLES, O ES UN AVION, O NO EXISTE,
+  --   HAGO UN RAISE_APPLICATION_ERROR
+  -- SI NO, DEVUELVO 'ok'
+end; 
+\end{listadosql}
+
+    Nota: puede ser muy útil una función que reciba un identificador de pieza y devuelva el número de piezas simples de las que se compone. La sentencia propietaria de Oracle \texttt{CONNECT BY PRIOR} puede facilitar mucho esta función (aunque no es necesaria).
+
+
+\end{homeworkProblem}
+
+\section{Instrucciones de entrega}
+Se creará un único fichero SQL para todos los apartados. Este fichero se corregirá de forma semiautomática, por lo que es necesario seguir la nomenclatura propuesta en el ejercicio.
+
+La autoría del trabajo puede ser por parejas. A pesar de ello, cada alumno debe subir al moodle una copia del trabajo. Los alumnos que no dispongan de usuario de educamadrid en el momento de la entrega pueden enviar su trabajo a alvaro.gonzalezsotillo@educa.madrid.org
+
+
+Sube el documento a \enlace{http://aulavirtual2.educa.madrid.org/mod/assignment/view.php?id=1116703}{la tarea correspondiente en el aula virtual}
+Presta atención al plazo de entrega (con fecha y hora).
+  
+
+\end{document}
+
+
+
+
