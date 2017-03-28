@@ -199,4 +199,43 @@ from course c full join course p on c.PREREQUISITE = p.course_no;
 ** Lista de los estados con más de 10 alumnos matriculados
 ** Lista de los estados con menos de 11 alumnos matriculados
 ** Estado(s) con más alumnos matriculados
+** Qué curso (descripción) tiene más profesores
+create view profesores_por_curso as
+select c.description, c.course_no, count(*) as numeroprofes
+from 
+  instructor i, section s, course c
+where
+  i.instructor_id = s.instructor_id and
+  s.course_no = c.course_no
+group by
+  c.course_no, c.description;
+  
+select description, numeroprofes 
+from profesores_por_curso
+where numeroprofes = (
+  select max(numeroprofes) 
+  from profesores_por_curso  
+);
 
+
+** Número de alumnos por estado que ha sacado más de un 85 en la media de tareas de "homework" (HM)
+select state, count(*) alumnosconmasde85
+from (
+  select z.zip, s.student_id, avg(g.numeric_grade)
+  from
+    zipcode z, student s, enrollment e, grade g
+  where
+    z.zip = s.zip and
+    s.student_id = e.student_id and
+    e.student_id = g.student_id and
+    e.section_id = g.section_id and
+    g.GRADE_TYPE_CODE = 'HM'
+  group by
+    z.zip, s.student_id
+  having
+    avg(g.numeric_grade)>85
+  ) e , zipcode z
+where
+  e.zip = z.zip
+group by
+  state;
