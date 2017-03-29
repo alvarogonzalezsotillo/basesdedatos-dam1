@@ -118,7 +118,7 @@ Una compañía aeronáutica necesita informatizar la gestión de las piezas de s
     \end{tabular}
   \end{center}
 
-  \begin{listadosql}{label}{caption}
+  \begin{listadosql}{Creación de la vista \texttt{AVIONES\_PROFESOR}}{label}
 create or replace view AVIONES_PROFESOR(id, padre_id, nombre, sn, pn) as
 select ...
 \end{listadosql}
@@ -132,10 +132,10 @@ select ...
   \item Crea un procedimiento \texttt{BORRAR\_AVION} que reciba un identificador de avión y borre
     todas sus piezas. El procedimiento fallará si el avión no existe.
   \item Crea un procedimiento \texttt{BORRAR\_AVIONES} que borre todos los aviones (y posibles piezas
-    sueltas) de la base de datos. También reiniciará todas las secuencias que se utilicen.
+    sueltas) de la base de datos. También reiniciará (borrará y volverá a crear) todas las secuencias que se utilicen.
   \end{itemize}
 
-  \begin{listadosql}{label}{caption}
+  \begin{listadosql}{Creación de los procedimientos de limplieza}{label}
 create or replace procedure BORRAR_AVION(avion_id IN number) as ... 
 create or replace procedure BORRAR_AVIONES() as ...
 \end{listadosql}
@@ -156,7 +156,7 @@ create or replace procedure BORRAR_AVIONES() as ...
     el original. El parámetro \texttt{copia\_avion\_id} devolverá el identificador del nuevo avión
   \end{itemize}
 
-\begin{listadosql}{label}{caption}
+\begin{listadosql}{Cabecera y pseudocódigo de los procedimientos de copia}{label}
 create or replace procedure COPIAR_PIEZA(
   pieza_id IN number, 
   nueva_pieza_destino IN number, 
@@ -186,29 +186,24 @@ end;
 \begin{homeworkProblem}[: Funciones de comprobación (3 puntos)]
   \begin{itemize}
 
-  \item La función \texttt{COMPRUEBA\_AVION(ID)} provocará un error en los siguientes casos:
-    \begin{itemize}
-    \item el avión tiene más de {\maximopiezasavion} piezas simples
-    \item si el \texttt{ID} no es el de un avión.
-    \item si el \texttt{ID} no existe.
-    \end{itemize}
   \item La función \texttt{COMPRUEBA\_PIEZA(ID)} provocará un error en los siguientes casos:
     \begin{itemize}
     \item si la pieza tiene más de {\maximopiezaspieza} piezas simples
     \item el \texttt{ID} es el de un avión.
     \item el \texttt{ID} no existe.
     \end{itemize}
+
+  \item La función \texttt{COMPRUEBA\_AVION(ID)} provocará un error en los siguientes casos:
+    \begin{itemize}
+    \item el avión tiene más de {\maximopiezasavion} piezas simples
+    \item el avión tiene alguna pieza compuesta con más de {\maximopiezaspieza} piezas simples.  
+    \item si el \texttt{ID} no es el de un avión.
+    \item si el \texttt{ID} no existe.  
+    \end{itemize}
   \end{itemize}
 
   
-\begin{listadosql}{label}{caption}
-create or replace function COMPRUEBA_AVION(id IN number) return varchar 
-as
-begin
-  -- SI EL AVION TIENE MUCHAS PIEZAS SIMPLES, O NO ES UN AVION, O NO EXISTE, 
-  --   HAGO UN RAISE_APPLICATION_ERROR
-  -- SI NO, DEVUELVO 'ok'
-end; 
+\begin{listadosql}{Creación y pseudocódigo de funciones de comprobación}{label}
 
 create or replace function COMPRUEBA_PIEZA(id IN number) return varchar 
 as
@@ -217,6 +212,16 @@ begin
   --   HAGO UN RAISE_APPLICATION_ERROR
   -- SI NO, DEVUELVO 'ok'
 end; 
+
+create or replace function COMPRUEBA_AVION(id IN number) return varchar 
+as
+begin
+  -- SI EL AVION TIENE MUCHAS PIEZAS SIMPLES, O NO ES UN AVION, O NO EXISTE, 
+  --   HAGO UN RAISE_APPLICATION_ERROR
+  -- COMPRUEBO LAS PIEZAS DEL AVION CON COMPRUEBA_PIEZA
+  -- SI NO, DEVUELVO 'ok'
+end; 
+
 \end{listadosql}
 
     Nota: puede ser muy útil una función que reciba un identificador de pieza y devuelva el número de piezas simples de las que se compone. La sentencia propietaria de Oracle \texttt{CONNECT BY PRIOR} puede facilitar mucho esta función (aunque no es necesaria).
