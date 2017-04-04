@@ -72,7 +72,7 @@ Una compañía aeronáutica necesita informatizar la gestión de las piezas de s
 \newcommand{\MotorPN}{PN-004}
 
 \needspace{.15\textheight}
-\begin{homeworkProblem}[: Procedimiento para crear un avión (2 puntos)]
+\begin{homeworkProblem}[: Procedimientos para crear y mostrar un avión (2 puntos)]
   Crea un procedimiento de nombre \texttt{CREAR\_AVION\_TIPO(avion\_id number)} que dé de alta el siguiente avión con el \texttt{ID} especificado:
   
   \begin{center}
@@ -96,6 +96,40 @@ Una compañía aeronáutica necesita informatizar la gestión de las piezas de s
     \end{tabular}
   \end{center}
   El procedimiento fallará si alguno de los \textit{serial number} está ya utilizado.
+
+  Crea un procedimiento \texttt{MUESTRA\_AVION(avion\_id number)}, que imprima un avión y las piezas que lo componen, en forma de árbol. Usa \texttt{dbms\_output.put\_line()}.
+
+\begin{listadosql}{Creación del procedimiento \texttt{MUESTRA\_AVION}}{label}
+create or replace procedure MUESTRA_AVION( avion_id IN number ) 
+as
+begin
+  -- MUESTRA EL ID NOMBRE DEL AVION
+  -- POR CADA PIEZA QUE TENGA COMO PADRE AL ID DEL AVION:
+  --   LLAMA A UN PRODEDIMIENTO QUE MUESTRE EL ID, ID DEL PADRE, NOMBRE, 
+  --   SN Y PN DE LA PIEZA, Y LOS DE SUS HIJAS.
+end;
+\end{listadosql}
+
+
+\begin{listadotxt}{Ejemplo de salida de MUESTRA\_AVION}{label}
+117 -  - Avion 1  
+    118 - 1010 - Fuselaje SN-89 PN-001
+    119 - 1010 - Cabina  
+        120 - 119 - Asiento piloto  
+            121 - 120 - Asiento 1 SN-90 PN-002
+            122 - 120 - Controles SN-91 PN-003
+        123 - 119 - Asiento 2 SN-92 PN-002
+        124 - 119 - Asiento 3 SN-93 PN-002
+    125 - 1010 - Motor 1 SN-94 PN-004
+    126 - 1010 - Motor 2 SN-95 PN-004
+    127 - 1010 - Cabina  
+        128 - 127 - Asiento piloto  
+            129 - 128 - Asiento 1 SN-96 PN-002
+            130 - 128 - Controles SN-97 PN-003
+        131 - 127 - Asiento 2 SN-98 PN-002
+        132 - 127 - Asiento 3 SN-99 PN-002
+
+\end{listadotxt}
   
 \end{homeworkProblem}
 
@@ -132,7 +166,7 @@ select ...
   \item Crea un procedimiento \texttt{BORRAR\_AVION} que reciba un identificador de avión y borre
     todas sus piezas. El procedimiento fallará si el avión no existe.
   \item Crea un procedimiento \texttt{BORRAR\_AVIONES} que borre todos los aviones (y posibles piezas
-    sueltas) de la base de datos. También reiniciará (borrará y volverá a crear) todas las secuencias que se utilicen.
+    sueltas) de la base de datos.
   \end{itemize}
 
   \begin{listadosql}{Creación de los procedimientos de limplieza}{label}
@@ -183,7 +217,7 @@ end;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \needspace{.15\textheight}
-\begin{homeworkProblem}[: Funciones de comprobación (3 puntos)]
+\begin{homeworkProblem}[: Funciones de comprobación (Opcional, 3 puntos)]
   \begin{itemize}
 
   \item La función \texttt{COMPRUEBA\_PIEZA(ID)} provocará un error en los siguientes casos:
