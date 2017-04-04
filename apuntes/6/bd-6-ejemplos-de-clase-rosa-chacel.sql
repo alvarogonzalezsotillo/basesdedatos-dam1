@@ -174,3 +174,127 @@ SELECT * FROM STUDENT where last_name='Bombo';
 commit;
 
 select user from dual;
+
+
+
+
+create or replace procedure copiar_hermano(
+  id_existente numeric,
+  nuevo_saludo varchar,
+  nuevo_nombre varchar,
+  id_creado out numeric )
+as
+    fila_existente student%rowtype;
+begin
+
+  select *
+  into fila_existente
+  from student
+  --where student_id = id_existente
+  ;
+
+
+
+
+ select id_para_estudiantes.nextval into id_creado from dual;
+  
+  insert into student(
+    student_id,
+    salutation,
+    first_name,
+    last_name,
+    street_address,
+    zip,
+    phone,
+    registration_date,
+    created_by,
+    created_date,
+    modified_by,
+    modified_date
+  )
+  values (
+    id_creado,
+    nuevo_saludo,
+    nuevo_nombre,
+    fila_existente.last_name,
+    fila_existente.street_address,
+    fila_existente.zip,
+    fila_existente.phone,
+    SYSDATE,
+    user,
+    SYSDATE,
+    user,
+    SYSDATE
+  );
+
+end;
+/
+  
+declare
+  nuevoid numeric;
+begin
+  copiar_hermano(360,'Ms.', 'Lola', nuevoid );
+  dbms_output.put_line(nuevoid);
+end;
+/
+
+select * from student where student_id in (360, 1008, 1009);
+
+
+
+create or replace function maxima_minima_nota(
+  maximo out numeric,
+  minimo out numeric
+)
+return varchar
+as
+  retorno varchar(15) := 'sin datos';
+begin
+  maximo := -1000;
+  minimo := 1000;
+  for g in (select * from grade) loop
+    retorno := 'ok';
+    maximo := greatest(maximo,g.numeric_grade);
+    minimo := least(minimo,g.numeric_grade);
+  end loop;
+  return retorno;
+end;
+/
+
+declare
+  maximo numeric;
+  minimo numeric;
+  retorno varchar(5);
+begin
+  retorno := maxima_minima_nota(maximo,minimo);
+  dbms_output.put_line( retorno || ': ' || maximo || ' -- ' || minimo );
+end;
+/
+
+
+
+
+create or replace trigger ponle_id_al_student
+before insert
+on student
+for each row
+begin
+  if( :new.student_id is null ) then
+    :new.student_id := id_para_estudiantes.nextval;
+  end if;
+end;
+/
+
+insert into student(
+  salutation,first_name,last_name,
+  street_address,zip,phone,employer,
+  registration_date,
+  created_by,created_date, modified_by,modified_date)
+values(
+  'sal','nom','ape',
+  'calle','00914','tel','emplo',
+  SYSDATE,
+  USER,SYSDATE,user,SYSDATE
+);
+
+select * from student where salutation='sal';
