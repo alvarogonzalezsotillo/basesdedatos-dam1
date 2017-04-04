@@ -171,7 +171,7 @@ stepnumber=5 % Line numbers go in steps of 5
 
 \newcommand{\hmwkTitle}{Redefine el hmwkTitle} % Assignment title
 \newcommand{\hmwkDueDate}{asdfadsf} % Due date
-\newcommand{\hmwkClass}{Administración de bases de datos} % Course/class
+\newcommand{\hmwkClass}{Redefine hmwkClass} % Course/class
 \newcommand{\hmwkClassTime}{} % Class/lecture time
 \newcommand{\hmwkClassInstructor}{} % Teacher/lecturer
 \newcommand{\hmwkAuthorName}{Álvaro González Sotillo} % Your name
@@ -243,15 +243,34 @@ stepnumber=5 % Line numbers go in steps of 5
 
 \newcommand{\ficheroautoref}[0]{
 
-\attachfile[mimetype=text/plain,
-description={La plantilla},
-subject={La plantilla}]
-{../common/plantilla-ejercicio.tex}
 
-\attachfile[mimetype=text/plain,
+  \IfFileExists{../common/plantilla-ejercicio.tex}
+  {
+    \textattachfile[mimetype=text/plain,
+    description={La plantilla},
+    subject={La plantilla}]
+    {../common/plantilla-ejercicio.tex}
+    {}
+  }
+  {}
+
+  \IfFileExists{../apuntes/common/plantilla-ejercicio.tex}
+  {
+    \textattachfile[mimetype=text/plain,
+    description={La plantilla},
+    subject={La plantilla}]
+    {../apuntes/common/plantilla-ejercicio.tex}
+    {}
+  }
+  {}
+  
+
+\textattachfile[mimetype=text/plain,
 description={El fichero TEX original para crear este documento, no sea que se nos pierda},
 subject={El fichero TEX original para crear este documento, no sea que se nos pierda}]
-{\currfilename}}
+{\currfilename}{}
+
+}
 
 \newcommand{\entradausuario}[1]{\textit{\textbf{#1}}}
 
@@ -319,6 +338,17 @@ subject={#1}]
 }
 {
 }
+
+% LISTADO SQL
+\lstnewenvironment{listadosql}[2][]
+{
+  \lstset{language=sql,inputencoding=utf8,captionpos=b,caption={#2},label={#1},frame=single,basicstyle=\small\ttfamily,showstringspaces=false,numbers=none}
+}
+{
+}
+
+
+
 
 
 \newcommand{\graficosvg}[3][14cm]{
