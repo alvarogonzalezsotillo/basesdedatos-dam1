@@ -329,7 +329,7 @@ begin
   select valor into viejo from agregados where nombre='Masa salarial' for update;
   select valor into presupuesto from agregados where nombre='Presupuesto' for update;
   if( viejo + :new.sueldo > presupuesto ) then
-    raise_application_error( -20000, 'Te pasas de prespuesto, es' || presupuesto || ' y querías gastarte ' || (viejo + :new.sueldo) );
+    raise_application_error( -20000, 'Te pasas de prespuesto, es ' || presupuesto || ' y querías gastarte ' || (viejo + :new.sueldo) );
   end if;
   update agregados set valor=viejo+:new.sueldo where nombre='Masa salarial';
 end;
