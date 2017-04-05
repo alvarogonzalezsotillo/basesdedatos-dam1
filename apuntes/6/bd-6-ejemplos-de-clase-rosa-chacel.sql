@@ -285,6 +285,17 @@ begin
 end;
 /
 
+create or replace trigger actualiza_lo_de_modificado
+before update
+on student
+for each row
+begin
+  :new.modified_by := user;
+  :new.modified_date := sysdate;
+end;
+/
+
+
 insert into student(
   salutation,first_name,last_name,
   street_address,zip,phone,employer,
@@ -297,4 +308,48 @@ values(
   USER,SYSDATE,user,SYSDATE
 );
 
-select * from student where salutation='sal';
+select * from student where student_id=1013;
+
+update clases.student set salutation='Mr.' where student_id=1013;
+
+select sysdate from dual;
+
+commit;
+
+
+
+create or replace trigger nuevo_sueldo
+before insert
+on sueldos
+for each row
+declare
+  viejo numeric;
+  presupuesto numeric;
+begin
+  select valor into viejo from agregados where nombre='Masa salarial' for update;
+  select valor into presupuesto from agregados where nombre='Presupuesto' for update;
+  if( viejo + :new.sueldo > presupuesto ) then
+    raise_application_error( -20000, 'Te pasas de prespuesto, es' || presupuesto || ' y querías gastarte ' || (viejo + :new.sueldo) );
+  end if;
+  update agregados set valor=viejo+:new.sueldo where nombre='Masa salarial';
+end;
+/
+
+
+create table Sueldos( empleado varchar(50) primary key, sueldo numeric(10,2) );
+
+create table agregados( nombre varchar(50) primary key, valor numeric(10,2) );
+
+insert into sueldos values( 'Pepe', 1200 );
+insert into sueldos values( 'María', 1205 );
+insert into sueldos values( 'Juan', 605 );
+insert into sueldos values( 'Susana', 1000 );
+
+
+insert into agregados values( 'Masa salarial', 1200 +1205 );
+insert into agregados values( 'Presupuesto', 4000 );
+
+select sum(sueldo) from sueldos;
+select valor from agregados where nombre = 'Masa salarial';
+
+commit;
