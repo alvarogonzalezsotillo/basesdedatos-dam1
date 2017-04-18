@@ -316,22 +316,61 @@ select sysdate from dual;
 
 commit;
 
+create or replace procedure inicializa_masa_salarial
+as
+  masa numeric;
+begin
+  select sum(sueldo) into masa from sueldos;
+  update agregados set valor=masa where nombre='Masa salarial';
+end;
+/
 
-
-create or replace trigger nuevo_sueldo
-before insert
-on sueldos
-for each row
-declare
-  viejo numeric;
+create or replace procedure mantenimiento_masa_salarial(
+  nuevosueldo numeric,
+  viejosueldo numeric )
+as
+  aumento numeric;
+  masa numeric;
   presupuesto numeric;
 begin
-  select valor into viejo from agregados where nombre='Masa salarial' for update;
+  aumento := nuevosueldo - viejosueldo;
+  dbms_output.put_line('aumento:' || aumento );
+  select valor into masa from agregados where nombre='Masa salarial' for update;
   select valor into presupuesto from agregados where nombre='Presupuesto' for update;
-  if( viejo + :new.sueldo > presupuesto ) then
-    raise_application_error( -20000, 'Te pasas de prespuesto, es ' || presupuesto || ' y querías gastarte ' || (viejo + :new.sueldo) );
+  if( masa + aumento > presupuesto ) then
+    raise_application_error( -20000, 'Te pasas de prespuesto, es ' || presupuesto || ' y querías gastarte ' || (masa + aumento) );
   end if;
-  update agregados set valor=viejo+:new.sueldo where nombre='Masa salarial';
+
+  if( masa + aumento < 0 ) then
+    raise_application_error( -20000, 'Algo pasa, me queda menos de 0 de masa salarial' );
+  end if;
+
+  update agregados set valor=masa+aumento where nombre='Masa salarial';
+
+end;
+/
+
+create or replace trigger nuevo_sueldo
+before insert on sueldos for each row
+declare
+begin
+  mantenimiento_masa_salarial(:new.sueldo,0);
+end;
+/
+
+create or replace trigger borrado_sueldo
+before delete on sueldos for each row
+declare
+begin
+  mantenimiento_masa_salarial(0,:old.sueldo);
+end;
+/
+
+create or replace trigger cambio_sueldo
+before update on sueldos for each row
+declare
+begin
+  mantenimiento_masa_salarial(:new.sueldo,:old.sueldo);
 end;
 /
 
@@ -343,13 +382,26 @@ create table agregados( nombre varchar(50) primary key, valor numeric(10,2) );
 insert into sueldos values( 'Pepe', 1200 );
 insert into sueldos values( 'María', 1205 );
 insert into sueldos values( 'Juan', 605 );
-insert into sueldos values( 'Susana', 1000 );
+insert into sueldos values( 'Susana', 100 );
+insert into sueldos values( 'Pepa', 300 );
+
+update sueldos set sueldo=450 where empleado='Pepa';
 
 
 insert into agregados values( 'Masa salarial', 1200 +1205 );
 insert into agregados values( 'Presupuesto', 4000 );
 
-select sum(sueldo) from sueldos;
-select valor from agregados where nombre = 'Masa salarial';
+select 'suma', sum(sueldo) from sueldos
+union
+select 'agregado', valor from agregados where nombre = 'Masa salarial';
 
+delete from sueldos where empleado in ('Susana','Pepa');
 commit;
+rollback;
+
+select * from sueldos;
+
+begin inicializa_masa_salarial; end;
+/
+
+
