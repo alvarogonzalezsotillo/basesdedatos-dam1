@@ -73,7 +73,7 @@ Una compañía aeronáutica necesita informatizar la gestión de las piezas de s
 
 \needspace{.15\textheight}
 \begin{homeworkProblem}[: Procedimientos para crear y mostrar un avión (2 puntos)]
-  Crea un procedimiento de nombre \texttt{CREAR\_AVION\_TIPO(avion\_id number)} que dé de alta el siguiente avión con el \texttt{ID} especificado:
+  Crea un procedimiento de nombre \texttt{CREAR\_AVION\_TIPO(avion\_id OUT number)} que dé de alta el siguiente avión con el \texttt{ID} especificado:
   
   \begin{center}
     \begin{tabular}{|l|c|c|}
@@ -96,6 +96,18 @@ Una compañía aeronáutica necesita informatizar la gestión de las piezas de s
     \end{tabular}
   \end{center}
   El procedimiento fallará si alguno de los \textit{serial number} está ya utilizado.
+
+  \begin{listadosql}{Creación del procedimiento \texttt{CREAR\_AVION\_TIPO}}{label}
+create or replace procedure CREAR_AVION_TIPO(avion_id OUT number)
+as 
+begin
+  -- CONSIGUE EL NUEVO ID DEL AVION A PARTIR DE LA SECUENCIA
+  -- INSERTA EL AVION CON ESE ID
+  -- INSERTA LAS DEMÁS PIEZAS QUE TENGAN COMO PADRE AL AVION
+  --   Y LAS PIEZAS QUE CUELGUEN DE ELLAS
+end;
+\end{listadosql}
+
 
   Crea un procedimiento \texttt{MUESTRA\_AVION(avion\_id number)}, que imprima un avión y las piezas que lo componen, en forma de árbol. Usa \texttt{dbms\_output.put\_line()}.
 
