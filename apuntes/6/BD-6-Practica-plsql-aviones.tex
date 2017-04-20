@@ -78,7 +78,7 @@ Una compañía aeronáutica necesita informatizar la gestión de las piezas de s
   \begin{center}
     \begin{tabular}{|l|c|c|}
       \hline
-      \textbf{Nombre de pieza} & \textbf{Serial Number} & \textbf{Part Number} \\
+      \textbf{Nombre de pieza} & \textbf{Serial Number} (ejemplos) & \textbf{Part Number} \\
       \hline
 
       Avión \Contador{Avion} & & \\
@@ -95,7 +95,7 @@ Una compañía aeronáutica necesita informatizar la gestión de las piezas de s
       \hline
     \end{tabular}
   \end{center}
-  El procedimiento fallará si alguno de los \textit{serial number} está ya utilizado.
+  \textbf{Nota:} Los \textit{serial number} se extraerán de la secuencia correspondiente, los indicados son solo un ejemplo.
 
   \begin{listadosql}{Creación del procedimiento \texttt{CREAR\_AVION\_TIPO}}{label}
 create or replace procedure CREAR_AVION_TIPO(avion_id OUT number)
