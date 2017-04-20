@@ -73,31 +73,36 @@ Una compañía aeronáutica necesita informatizar la gestión de las piezas de s
 
 \needspace{.15\textheight}
 \begin{homeworkProblem}[: Procedimientos para crear y mostrar un avión (2 puntos)]
-  Crea un procedimiento de nombre \texttt{CREAR\_AVION\_TIPO(avion\_id OUT number)} que dé de alta un avión y devuelva el \texttt{ID} de dicho avión recién creado. Los \textit{serial number}, así como los identificadores de cada pieza, se extraerán de la secuencia correspondiente, y por eso no se muestran en los datos a insertar.
+  Crea un procedimiento de nombre \texttt{CREAR\_AVION\_TIPO(avion\_id OUT number)} (listado \ref{lst:crear-avion-tipo}) que dé de alta un avión como el de la figura \ref{tabla:avion-tipo} y devuelva el \texttt{ID} del avión recién creado. Los \textit{serial number}, así como los identificadores de cada pieza, se extraerán de la secuencia correspondiente, y por eso no se muestran en los datos a insertar.
+
   
-  \begin{center}
-    \begin{tabular}{|l|c|c|}
-      \hline
-      \textbf{Nombre de pieza} & \textbf{Part Number} \\
-      \hline
+  \begin{figure}
+    \begin{center}
+      \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Nombre de pieza} & \textbf{Part Number} \\
+        \hline
 
-      Avión \Contador{Avion} & \\
+        Avión \Contador{Avion} & \\
 
-      \hspace{2em}Fuselaje                         & \FuselajePN \\
-      \hspace{2em}Cabina                          & \\
-      \hspace{4em}Asiento piloto                & \\
-      \hspace{6em}Asiento \Contador{Asiento}   & \AsientoPN \\
-      \hspace{6em}Controles                    & \ControlesPN \\
-      \hspace{4em}Asiento \Contador{Asiento}     & \AsientoPN \\
-      \hspace{4em}Asiento \Contador{Asiento}     & \AsientoPN \\
-      \hspace{2em}Motor \Contador{Motor}           & \MotorPN \\
-      \hspace{2em}Motor \Contador{Motor}           & \MotorPN \\
-      \hline
-    \end{tabular}
-  \end{center}
+        \hspace{2em}Fuselaje                         & \FuselajePN \\
+        \hspace{2em}Cabina                          & \\
+        \hspace{4em}Asiento piloto                & \\
+        \hspace{6em}Asiento \Contador{Asiento}   & \AsientoPN \\
+        \hspace{6em}Controles                    & \ControlesPN \\
+        \hspace{4em}Asiento \Contador{Asiento}     & \AsientoPN \\
+        \hspace{4em}Asiento \Contador{Asiento}     & \AsientoPN \\
+        \hspace{2em}Motor \Contador{Motor}           & \MotorPN \\
+        \hspace{2em}Motor \Contador{Motor}           & \MotorPN \\
+        \hline
+      \end{tabular}
+    \end{center}
+    
+    \caption{Datos del avión tipo}
+    \label{tabla:avion-tipo}
+  \end{figure}
 
-
-  \begin{listadosql}{Creación del procedimiento \texttt{CREAR\_AVION\_TIPO}}{label}
+  \begin{listadosql}{Creación del procedimiento \texttt{CREAR\_AVION\_TIPO}}{lst:crear-avion-tipo}
 create or replace procedure CREAR_AVION_TIPO(avion_id OUT number)
 as 
 begin
@@ -109,9 +114,9 @@ end;
 \end{listadosql}
 
 
-  Crea un procedimiento \texttt{MUESTRA\_AVION(avion\_id number)}, que imprima un avión y las piezas que lo componen, en forma de árbol. Usa \texttt{dbms\_output.put\_line()}.
+  Crea un procedimiento \texttt{MUESTRA\_AVION(avion\_id number)} (listado \ref{lst:muestra-avion}), que imprima un avión y las piezas que lo componen, en forma de árbol. Usa \texttt{dbms\_output.put\_line()} para conseguir una salida parecida a la del listado \ref{lst:ejemplo-muestra-avion}.
 
-\begin{listadosql}{Creación del procedimiento \texttt{MUESTRA\_AVION}}{label}
+\begin{listadosql}{Creación del procedimiento \texttt{MUESTRA\_AVION}}{lst:muestra-avion}
 create or replace procedure MUESTRA_AVION( avion_id IN number ) 
 as
 begin
@@ -123,7 +128,7 @@ end;
 \end{listadosql}
 
 
-\begin{listadotxt}{Ejemplo de salida de MUESTRA\_AVION}{label}
+\begin{listadotxt}{Ejemplo de salida de MUESTRA\_AVION}{lst:ejemplo-muestra-avion}
 117 -  - Avion 1  
     118 - 117 - Fuselaje SN-89 PN-001
     119 - 117 - Cabina  
@@ -148,7 +153,7 @@ end;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{homeworkProblem}[: Vista para el profesor (1 punto)]
 
-  Crea una vista \texttt{AVIONES\_PROFESOR} que liste todas las piezas, aviones incluidos. Los tipos de las columnas serán los siguientes:
+  Crea una vista \texttt{AVIONES\_PROFESOR} (listado \ref{lst:aviones-profesor}) que liste todas las piezas, aviones incluidos. Los tipos de las columnas serán los siguientes:
   
   \begin{center}
     \begin{tabular}{|c|c|p{10cm}|}
@@ -164,7 +169,7 @@ end;
     \end{tabular}
   \end{center}
 
-  \begin{listadosql}{Creación de la vista \texttt{AVIONES\_PROFESOR}}{label}
+  \begin{listadosql}{Creación de la vista \texttt{AVIONES\_PROFESOR}}{lst:aviones-profesor}
 create or replace view AVIONES_PROFESOR(id, padre_id, nombre, sn, pn) as
 select ...
 \end{listadosql}
@@ -181,7 +186,7 @@ select ...
     sueltas) de la base de datos.
   \end{itemize}
 
-  \begin{listadosql}{Creación de los procedimientos de limplieza}{label}
+  \begin{listadosql}{Creación de los procedimientos de limplieza}{lst:limpieza}
 create or replace procedure BORRAR_AVION(avion_id IN number) as ... 
 create or replace procedure BORRAR_AVIONES() as ...
 \end{listadosql}
@@ -202,7 +207,7 @@ create or replace procedure BORRAR_AVIONES() as ...
     el original. El parámetro \texttt{copia\_avion\_id} devolverá el identificador del nuevo avión
   \end{itemize}
 
-\begin{listadosql}{Cabecera y pseudocódigo de los procedimientos de copia}{label}
+\begin{listadosql}{Cabecera y pseudocódigo de los procedimientos de copia}{lst:copia}
 create or replace procedure COPIAR_PIEZA(
   pieza_id IN number, 
   nueva_pieza_destino IN number, 

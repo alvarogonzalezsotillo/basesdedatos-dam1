@@ -316,36 +316,38 @@ subject={#1}]
 \renewcommand{\lstlistingname}{Listado}
 \captionsetup[lstlisting]{font={footnotesize},labelfont=bf,position=bottom}
 \captionsetup[figure]{font={footnotesize},labelfont=bf}
-\lstnewenvironment{listadojava}[1]
+\lstnewenvironment{listadojava}[2]
 {
-  \lstset{captionpos=b,caption={#1},language=Java,frame=single,basicstyle=\footnotesize\ttfamily,showstringspaces=false,numbers=left,xleftmargin=2em}
+  \lstset{captionpos=b,caption={#1},label={#2},language=Java,frame=single,basicstyle=\footnotesize\ttfamily,showstringspaces=false,numbers=left,xleftmargin=2em}
+  \noindent\minipage{\linewidth}%
 }
-{
-}
+{\endminipage}
 
 % LISTADO SHELL
-\lstnewenvironment{listadoshell}[2][]
+\lstnewenvironment{listadoshell}[2]
 {
-  \lstset{captionpos=b,caption={#2},label={#1},language=bash,frame=single,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+  \lstset{captionpos=b,caption={#1},label={#2},language=bash,frame=single,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+  \noindent\minipage{\linewidth}%
 }
-{
-}
+{\endminipage}
 
 % LISTADO TXT
-\lstnewenvironment{listadotxt}[2][]
+\lstnewenvironment{listadotxt}[2]
 {
-  \lstset{inputencoding=utf8,captionpos=b,caption={#2},label={#1},frame=single,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+  \lstset{inputencoding=utf8,captionpos=b,caption={#1},label={#2},frame=single,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+  \noindent\minipage{\linewidth}%
 }
-{
-}
+{\endminipage}
 
 % LISTADO SQL
-\lstnewenvironment{listadosql}[2][]
-{
-  \lstset{language=sql,inputencoding=utf8,captionpos=b,caption={#2},label={#1},frame=single,basicstyle=\small\ttfamily,showstringspaces=false,numbers=none}
+\lstnewenvironment{listadosql}[2]%
+{%
+  \lstset{language=sql,inputencoding=utf8,captionpos=b,caption={#1},label={#2},frame=single,basicstyle=\small\ttfamily,showstringspaces=false,numbers=none}%
+  \noindent\minipage{\linewidth}%
 }
-{
-}
+{\endminipage}
+  
+
 
 
 
