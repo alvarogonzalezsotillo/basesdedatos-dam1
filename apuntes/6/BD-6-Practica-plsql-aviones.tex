@@ -73,29 +73,29 @@ Una compañía aeronáutica necesita informatizar la gestión de las piezas de s
 
 \needspace{.15\textheight}
 \begin{homeworkProblem}[: Procedimientos para crear y mostrar un avión (2 puntos)]
-  Crea un procedimiento de nombre \texttt{CREAR\_AVION\_TIPO(avion\_id OUT number)} que dé de alta el siguiente avión con el \texttt{ID} especificado:
+  Crea un procedimiento de nombre \texttt{CREAR\_AVION\_TIPO(avion\_id OUT number)} que dé de alta un avión y devuelva el \texttt{ID} de dicho avión recién creado. Los \textit{serial number}, así como los identificadores de cada pieza, se extraerán de la secuencia correspondiente, y por eso no se muestran en los datos a insertar.
   
   \begin{center}
     \begin{tabular}{|l|c|c|}
       \hline
-      \textbf{Nombre de pieza} & \textbf{Serial Number} (ejemplos) & \textbf{Part Number} \\
+      \textbf{Nombre de pieza} & \textbf{Part Number} \\
       \hline
 
-      Avión \Contador{Avion} & & \\
+      Avión \Contador{Avion} & \\
 
-      \hspace{2em}Fuselaje                       & SN-100\Contador{SN} & \FuselajePN \\
-      \hspace{2em}Cabina                         & & \\
-      \hspace{4em}Asiento piloto               & & \\
-      \hspace{6em}Asiento \Contador{Asiento} & SN-100\Contador{SN} & \AsientoPN \\
-      \hspace{6em}Controles                  & SN-100\Contador{SN} & \ControlesPN \\
-      \hspace{4em}Asiento \Contador{Asiento}   & SN-100\Contador{SN} & \AsientoPN \\
-      \hspace{4em}Asiento \Contador{Asiento}   & SN-100\Contador{SN} & \AsientoPN \\
-      \hspace{2em}Motor \Contador{Motor}         & SN-100\Contador{SN} & \MotorPN \\
-      \hspace{2em}Motor \Contador{Motor}         & SN-100\Contador{SN} & \MotorPN \\
+      \hspace{2em}Fuselaje                         & \FuselajePN \\
+      \hspace{2em}Cabina                          & \\
+      \hspace{4em}Asiento piloto                & \\
+      \hspace{6em}Asiento \Contador{Asiento}   & \AsientoPN \\
+      \hspace{6em}Controles                    & \ControlesPN \\
+      \hspace{4em}Asiento \Contador{Asiento}     & \AsientoPN \\
+      \hspace{4em}Asiento \Contador{Asiento}     & \AsientoPN \\
+      \hspace{2em}Motor \Contador{Motor}           & \MotorPN \\
+      \hspace{2em}Motor \Contador{Motor}           & \MotorPN \\
       \hline
     \end{tabular}
   \end{center}
-  \textbf{Nota:} Los \textit{serial number} se extraerán de la secuencia correspondiente, los indicados son solo un ejemplo.
+
 
   \begin{listadosql}{Creación del procedimiento \texttt{CREAR\_AVION\_TIPO}}{label}
 create or replace procedure CREAR_AVION_TIPO(avion_id OUT number)
@@ -115,10 +115,10 @@ end;
 create or replace procedure MUESTRA_AVION( avion_id IN number ) 
 as
 begin
-  -- MUESTRA EL ID NOMBRE DEL AVION
+  -- MUESTRA EL ID Y EL NOMBRE DEL AVION
   -- POR CADA PIEZA QUE TENGA COMO PADRE AL ID DEL AVION:
-  --   LLAMA A UN PRODEDIMIENTO QUE MUESTRE EL ID, ID DEL PADRE, NOMBRE, 
-  --   SN Y PN DE LA PIEZA, Y LOS DE SUS HIJAS.
+  --   LLAMA A UN PRODEDIMIENTO QUE MUESTRE EL ID, ID DEL PADRE, NOMBRE, SN Y PN 
+  --      Y MUESTRA A SUS PIEZAS HIJAS
 end;
 \end{listadosql}
 
