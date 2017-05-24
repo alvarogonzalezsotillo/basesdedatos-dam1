@@ -1,0 +1,86 @@
+#+include: "../common/header.org"
+#+Title: Bases de datos distribuidas (dblinks)
+#+REVEAL_THEME: simple
+#+EXCLUDE_TAGS: no_export
+
+
+* Introducción
+- Hasta ahora, la base de datos es un *SPOF* (/single point of failure/)
+- Para evitar este problema, las bases de datos se suelen distribuir
+  - Se reparten los datos entre varios servidores
+  - Los datos pueden estar o no replicados
+
+** Ventajas de la distribución
+- Tolerancia a fallos
+- Escalabilidad y balanceo de carga
+  - CPU
+  - Disco
+- Posiblemente, mayor velocidad de lectura
+
+** Desventajas
+- Mayor complejidad
+  - Despliegue
+  - Lógica de los programas clientes
+  - ACID más difícil (aunque suele estar resuelto por los SGBD)
+- Generalmente, escrituras más lentas
+
+* Particiones de los datos
+- Horizontal
+  - Las /filas/ de una tabla se reparten entre servidores
+- Vertical
+  - Las /columnas/ de una tabla se reparten entre servidores
+- Mixta
+  - Horizontal y vertical combinadas
+
+#+reveal: split
+[[file:BD-7-ParticionHorizontal.jpg]]
+
+#+reveal: split
+[[file:BD-7-ParticionVertical.jpg]]
+
+
+* /DBLink/
+- Un servidor de Oracle hace de cliente de otro servidor
+- Puede servir para particionado vertical/horizontal
+- Las transacciones se coordinan entre todos los servidores de base de datos
+  - /ACID/
+  
+** Fichero =tnsnames.ora=
+- Es el fichero que usan los /clientes/ de Oracle
+- Incluye todos los servidores conocidos por los clientes
+- En =$ORACLE_HOME/network/admin/tnsnames.ora=
+- En este ejemplo:
+  - =XE= : Nombre de la conexión
+  - =HOST= : Nombre/IP del servidor
+  - =PORT= : Puerto TCP de conexión
+  - =SERVICE_NAME= : SID
+#+begin_src lisp
+XE =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = profebd.local)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = XE)
+    )
+  )
+#+end_src
+
+** Creación de /dblink/
+
+- Suponiendo una conexión de nombre =B=
+#+begin_src sql
+Create database link LNK_DE_A_a_B connect to USUARIO identified by CONTRASEÑA USING 'B';
+#+end_src
+
+- Referencia a tablas remotas:
+#+begin_src sql
+select * from TABLA@LNK_DE_A_a_B; 
+#+end_src
+
+- Llamada a funciones/procedimientos remotos:
+#+begin_src sql
+procedimiento@LNK_DE_A_a_B( parametro );
+#+end_src
+
+
+

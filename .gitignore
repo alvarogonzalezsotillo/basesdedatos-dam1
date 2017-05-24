@@ -7,3 +7,9 @@ otros
 *.el
 /copia_de_seguridad-bas.dat-20130901-1650.zip
 ~$*
+evaluacion/ev3-practica-bancos/.gradle
+evaluacion/ev3-practica-bancos/.idea
+evaluacion/ev3-practica-bancos/.settings
+evaluacion/ev3-practica-bancos/bin
+evaluacion/ev3-practica-bancos/build/
+evaluacion/ev3-examen-colegio/log
