@@ -85,5 +85,16 @@ select * from TABLA@LNK_DE_A_a_B;
 procedimiento@LNK_DE_A_a_B( parametro );
 #+end_src
 
+** Cadena de conexión
+- La cadena de conexión puede ser:
+  - *Un nombre de =tnsnames.ora=*
+  - Desde la versión =10.2=, puede ser *=host:port/service=*
+    - Si el puerto es =1521=, puede omitirse
 
+#+begin_src sql
+Create database link LNK_DE_A_a_B 
+  connect to USUARIO 
+  identified by CONTRASEÑA 
+  USING 'servidorB.com/XE';
+#+end_src
 
