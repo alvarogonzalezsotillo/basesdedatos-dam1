@@ -69,7 +69,10 @@ XE =
 
 - Suponiendo una conexión de nombre =B=
 #+begin_src sql
-Create database link LNK_DE_A_a_B connect to USUARIO identified by CONTRASEÑA USING 'B';
+Create database link LNK_DE_A_a_B 
+  connect to USUARIO 
+  identified by CONTRASEÑA 
+  USING 'B';
 #+end_src
 
 - Referencia a tablas remotas:
